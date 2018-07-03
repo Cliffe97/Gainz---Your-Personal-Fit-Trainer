@@ -7,7 +7,7 @@ html
     block content
     script(type='text/javascript').
       function newrow() {
-      document.getElementById("customTable").innerHTML += "<tr><td><input type='text'></td><td><input type='text'></td><td><button onclick='del(this)'>X</button></td></tr>";
+      document.getElementById("customTable").innerHTML += "<tr><td><input type='text'placeholder='Workout Name'></td><td><input type='text'placeholder='Time Durations'></td><td><button onclick='del(this)'>X</button></td></tr>";
       }
       function del(field) {
       field.parentNode.parentNode.outerHTML = "";
