@@ -3,3 +3,15 @@ extends layout
 block content
   .jumbotron
     h1 Create a Workout
+    hr
+    br
+    .container
+      input(type="text" name="workoutName" placeholder="Workout Name")
+    br
+    fieldset
+      legend Legend
+      table
+        tbody#customTable
+      button(onclick='newrow()') Add
+    br
+    button(type='submit') Submit
