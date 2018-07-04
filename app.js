@@ -6,7 +6,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const createWorkoutController = require('./controllers/createWorkoutController')
+const createIntervalWorkoutController = require('./controllers/createIntervalWorkoutController')
+const createRepWorkoutController = require('./controllers/createRepWorkoutController')
 
 var app = express();
 
@@ -22,8 +23,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.get('/createWorkout',
-            createWorkoutController.renderMain)
+app.get('/createIntervalWorkout',
+            createIntervalWorkoutController.renderMain)
+app.get('/createRepWorkout',
+            createRepWorkoutController.renderMain)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

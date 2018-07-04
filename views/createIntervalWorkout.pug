@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  .jumbotron
+    br
+    fieldset
+      legend Create an Interval Workout
+      p Interval training is a type of training that involves a series of low to high intensity workouts interspersed with rest or relief periods.
+      p The high-intensity periods are typically at or close to anaerobic exercise, while the recovery periods involve activity of lower intensity.
+      ol
+        li Add a Workout name
+        li Add a time duration
+        li Add more workouts if desired
+      table
+        td
+          input(type='text', placeholder='Workout Name')
+        td
+          input(type='text', placeholder='Time Durations')
+        td
+          button(onclick='del(this)') X
+        tbody#customTable
+      button(onclick='newrow()') Add a Workout
+      br
+      button(type='submit') Submit
+    br
