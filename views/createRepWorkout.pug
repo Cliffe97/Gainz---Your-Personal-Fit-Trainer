@@ -12,17 +12,17 @@ block content
         li Add the amount of repetitions
         li Add the amount of sets or rounds
         li Add more workouts if desired
-      table
-        td
-          input(type='text', placeholder='Workout Name')
-        td
-          input(type='text', placeholder='Repetitions')
-        td
-          input(type='text', placeholder='Sets/Rounds')
-        td
-          button(onclick='del(this)') X
-        tbody#customTable
-      button(onclick='newrow2()') Add a Workout
-      br
-      button(type='submit') Submit
+      form(method="post" action="addMoreRepWorkout")
+        table
+          td
+            input(type='text', placeholder='Workout Name')
+          td
+            input(type='text', placeholder='Repetitions')
+          td
+            input(type='text', placeholder='Sets/Rounds')
+          td
+            button(onclick='del(this)') X
+          tbody#customTable
+        button(type='submit') Submit
+      button(onclick='newrow()') Add a Workout
     br
