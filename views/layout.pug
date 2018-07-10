@@ -7,10 +7,10 @@ html
     block content
     script(type='text/javascript').
       function newrow() {
-      document.getElementById("customTable").innerHTML += "<tr><td><input type='text'placeholder='Workout Name'></td><td><input type='text'placeholder='Time Durations'></td><td><button onclick='del(this)'>X</button></td></tr>";
+      document.getElementById("customTable").innerHTML += "<tr><td><input type='text' name='workoutName' placeholder='Workout Name'></td><td><input type='text' name='timeDuration' placeholder='Time Durations'></td><td><button onclick='del(this)'>X</button></td></tr>";
       }
       function newrow2() {
-      document.getElementById("customTable").innerHTML += "<tr><td><input type='text'placeholder='Workout Name'></td><td><input type='text'placeholder='Repetitions'></td><td><input type='text'placeholder='Sets/Rounds'></td><td><button onclick='del(this)'>X</button></td></tr>";
+      document.getElementById("customTable").innerHTML += "<tr><td><input type='text' name='workoutName' placeholder='Workout Name'></td><td><input type='text' name='repetitions' placeholder='Repetitions'></td><td><input type='text' name='setsAndRounds' placeholder='Sets/Rounds'></td><td><button onclick='del(this)'>X</button></td></tr>";
       }
       function del(field) {
       field.parentNode.parentNode.outerHTML = "";
