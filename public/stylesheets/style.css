@@ -7,6 +7,14 @@ a {
   color: #00B7FF;
 }
 
+<<<<<<< HEAD
 .greyBC{
   background-color: lightGrey;
+=======
+.background{
+  background-image: url(/images/Build-Lean-Muscle-1.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+>>>>>>> 4b7300eb6ef9669629cf6598eb881442911f6687
 }
