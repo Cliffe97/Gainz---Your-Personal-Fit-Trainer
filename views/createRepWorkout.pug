@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  body.greyBC
   .jumbotron
     br
     fieldset
@@ -12,7 +13,7 @@ block content
         li Add the amount of repetitions
         li Add the amount of sets or rounds
         li Add more workouts if desired
-      form(method="post" action="addMoreRepWorkout")
+      form(method="post" action="repWorkout")
         table
           td
             input(type='text', placeholder='Workout Name')
