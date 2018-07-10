@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const createIntervalWorkoutController = require('./controllers/createIntervalWorkoutController')
 const createRepWorkoutController = require('./controllers/createRepWorkoutController')
+const repWorkoutController = require('./controllers/repWorkoutController')
+const intervalWorkoutController = require('./controllers/intervalWorkoutController')
 
 var app = express();
 
@@ -28,6 +30,12 @@ app.get('/createIntervalWorkout',
             createIntervalWorkoutController.renderMain)
 app.get('/createRepWorkout',
             createRepWorkoutController.renderMain)
+app.get('/intervalWorkout',
+            intervalWorkoutController.renderMain)
+            //intervalWorkoutController.getAllIntervalWorkout)
+app.get('/repWorkout',
+            repWorkoutController.renderMain)
+            //repWorkoutController.getAllRepWorkout)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
