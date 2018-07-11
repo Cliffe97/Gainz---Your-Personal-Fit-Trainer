@@ -3,3 +3,9 @@ extends layout
 block content
   h1= title
   
+  .jumbotron
+    h1 Login to GainZ
+    p You must have a gmail account to login into GainZ
+    
+    a.btn.btn-danger(href="/auth/google")
+      span.fa.fa-google-plus  Google
