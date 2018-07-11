@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  body.greyBC
   .jumbotron
     br
     fieldset
@@ -11,15 +12,16 @@ block content
         li Add a Workout name
         li Add a time duration
         li Add more workouts if desired
-      table
-        td
-          input(type='text', placeholder='Workout Name')
-        td
-          input(type='text', placeholder='Time Durations')
-        td
-          button(onclick='del(this)') X
-        tbody#customTable
+      form(method="post" action="addMoreIntervalWorkout")
+        table
+          td
+            input(type='text', placeholder='Workout Name')
+          td
+            input(type='text', placeholder='Time Durations')
+          td
+            button(onclick='del(this)') X
+          tbody#customTable
+        button(type='submit') Submit
+        br
       button(onclick='newrow()') Add a Workout
-      br
-      button(type='submit') Submit
     br
