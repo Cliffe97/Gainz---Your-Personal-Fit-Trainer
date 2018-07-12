@@ -1,11 +1,7 @@
 extends layout
 
 block content
-  h1= title
+  a.rightSide(href="/logout") Logout
 
-  .jumbotron
-    a(href="/logout") Logout
-    h2 Workout:
-    a(href="/createIntervalWorkout") Create Interval Workout
-    br
-    a(href="/createRepWorkout") Create Repetition Workout
+  a(href="/createIntervalWorkout") Create Interval Workout
+  a(href="/createRepWorkout") Create Repetition Workout

@@ -1,12 +1,10 @@
 extends layout
 
 block content
-  h1= title
-
-  .jumbotron
-    h1 Hello #{user.googlename}
-    a(href="/logout") Logout
-    h2 Workout:
-    a(href="/premade") Pre-Made
-    br
-    a(href="/customChoosing") Custom
+  h1 Hello #{user.googlename}
+  a.rightSide(href="/logout") Logout
+  br
+  br
+  h2.center.underline Workout:
+  a.centerbutton(href="/premade") Pre-Made
+  a.centerbutton(href="/customChoosing") Custom

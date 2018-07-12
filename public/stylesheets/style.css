@@ -7,6 +7,26 @@ a {
   color: #00B7FF;
 }
 
+.titleFont{
+  font-size: 150pt;
+  color: red
+}
+.center{
+  text-align: center;
+}
+.greyBC{
+  background-color: grey;
+}
+
+.whiteBC{
+  background-color: white;
+}
+.btn{
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  border-radius: 15px;
+}
 /*
 .background{
   background-image: url(/images/Build-Lean-Muscle-1.png);
@@ -15,3 +35,51 @@ a {
   background-position: center;
 }
 */
+.underline{
+  text-decoration: underline;
+}
+.rightSide{
+  float: right;
+}
+
+.centerbutton{
+  width: 525px;
+  height: 525px;
+  text-align: center;
+  vertical-align:middle;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px;
+  font-size: 100pt
+}
+a:link {
+    color: white;
+    font-size: 20pt;
+    text-decoration: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    vertical-align: middle;
+    background-color: red
+}
+a:visited {
+  color: white;
+  font-size: 20pt;
+  text-decoration: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  vertical-align: middle;
+  background-color: red
+}
+a:hover {
+    color: white;
+    background-color: red;
+    text-decoration: underline;
+    vertical-align: middle;
+    border: 5px solid #555555;
+}

@@ -1,11 +1,8 @@
 extends layout
 
 block content
-  h1= title
-  
-  .jumbotron
-    h1 Login to GainZ
-    p You must have a gmail account to login into GainZ
-    
+  fieldset
+    h1.titleFont.center GainZ
+    h1 Gain GainZ with GainZ Nation
     a.btn.btn-danger(href="/auth/google")
-      span.fa.fa-google-plus  Google
+      span.fa.fa-google-plus  Login with Google
