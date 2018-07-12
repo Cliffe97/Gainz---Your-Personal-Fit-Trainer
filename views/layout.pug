@@ -3,10 +3,10 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+  body.bc
     a(href="/category")
       button(type="button") Choose Category
-  body
-    block content
+  block content
     script(type='text/javascript').
       function newrow() {
       document.getElementById("customTable").innerHTML += "<tr><td><input type='text' name='workoutName' placeholder='Workout Name'></td><td><input type='text' name='timeDuration' placeholder='Time Durations'></td><td><button onclick='del(this)'>X</button></td></tr>";
