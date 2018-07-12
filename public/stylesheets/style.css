@@ -6,7 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
-
+.centerImage{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
 .titleFont{
   font-size: 150pt;
   color: red
@@ -35,6 +40,11 @@ a {
   background-position: center;
 }
 */
+
+.smallImage{
+  width: 500px;
+  height: 500px;
+}
 .underline{
   text-decoration: underline;
 }
@@ -82,4 +92,9 @@ a:hover {
     text-decoration: underline;
     vertical-align: middle;
     border: 5px solid #555555;
+}
+
+.containerBorder{
+  border: 5px solid red;
+  padding: 15px 32px;
 }
