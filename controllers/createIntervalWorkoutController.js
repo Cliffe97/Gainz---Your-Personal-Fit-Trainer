@@ -4,7 +4,9 @@ console.log("loading the createIntervalWorkout Controller")
 
 exports.renderMain =  (req,res) => {
   //console.log("in the swController.renderMain")
-  res.render('createIntervalWorkout')
+  res.render('createIntervalWorkout',{
+    user:req.user
+  })
 }
 
 exports.saveIntervalWorkout = ( req, res ) => {

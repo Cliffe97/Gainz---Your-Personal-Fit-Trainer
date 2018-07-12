@@ -17,7 +17,19 @@ block content
           td
             input(type='text', placeholder='Workout Name')
           td
+            input(type='text', value=user.googleemail)
+          td
             input(type='text', placeholder='Time Durations')
+          td
+            input(type='text', placeholder='Difficulty (1-5)')
+          td
+            input(type='text', placeholder='Body Focus')
+          td
+            input(type='text', placeholder='Training Type')
+          td
+            input(type='text', placeholder='Equipment')
+          td
+            input(type='text', placeholder='Exercise Durations')
           td
             button(onclick='del(this)') X
           tbody#customTable

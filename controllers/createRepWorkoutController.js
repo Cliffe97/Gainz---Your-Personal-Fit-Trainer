@@ -4,7 +4,9 @@ console.log("loading the createRepWorkout Controller")
 
 exports.renderMain =  (req,res) => {
   //console.log("in the swController.renderMain")
-  res.render('createRepWorkout')
+  res.render('createRepWorkout',{
+    user:req.user
+  })
 }
 
 exports.saveRepWorkout = ( req, res ) => {
