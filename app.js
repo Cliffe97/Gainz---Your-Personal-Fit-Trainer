@@ -12,6 +12,7 @@ const createIntervalWorkoutController = require('./controllers/createIntervalWor
 const createRepWorkoutController = require('./controllers/createRepWorkoutController')
 const repWorkoutController = require('./controllers/repWorkoutController')
 const intervalWorkoutController = require('./controllers/intervalWorkoutController')
+const customChoosingController = require('./controllers/customChoosingController')
 
 const menuController = require('./controllers/menuController')
 
@@ -142,7 +143,8 @@ app.get('/createRepWorkout',
             createRepWorkoutController.renderMain)
 app.get('/menu',
             menuController.renderMain)
-
+app.get('/customChoosing',
+            customChoosingController.renderMain)
 
 
 
