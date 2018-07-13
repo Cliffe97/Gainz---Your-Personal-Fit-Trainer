@@ -1,5 +1,6 @@
 'use strict';
-const mongoose = require( 'mongoose ' );
+const mongoose = require( 'mongoose' );
+
 
 var workoutSchema = mongoose.Schema( {
   Name: String,
@@ -10,7 +11,7 @@ var workoutSchema = mongoose.Schema( {
   TrainingType: String,
   Equipment: String,
   Content: String,
-  Timing, String
+  Timing: String
 } );
 
 module.exports = mongoose.model( 'PremmadeWorkout', workoutSchema );

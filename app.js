@@ -12,6 +12,8 @@ var repeatedworkoutRouter = require('./routes/repeatedworkout');
 
 const createIntervalWorkoutController = require('./controllers/createIntervalWorkoutController')
 const createRepWorkoutController = require('./controllers/createRepWorkoutController')
+const filterController = require('./controllers/filterController');
+const saveController = require('./controllers/saveController');
 const mongoose = require( 'mongoose' );
 
 var app = express();
@@ -39,10 +41,14 @@ app.use('/category', categoryRouter);
 app.use('/timedworkout', timedworkoutRouter);
 app.use('/repeatedworkout', repeatedworkoutRouter);
 
-app.get('/createIntervalWorkout',
-            createIntervalWorkoutController.renderMain)
-app.get('/createRepWorkout',
-            createRepWorkoutController.renderMain)
+// app.get('/createIntervalWorkout',
+//             createIntervalWorkoutController.renderMain)
+// app.get('/createRepWorkout',
+//             createRepWorkoutController.renderMain)
+app.get('/admin',  filterController.getAllWorkouts)
+app.post('/saveWorkout', filterController.saveWorkout)
+//app.get('/c'ategory', filterController.getAllWorkouts)
+app.post('/deleteWorkout', filterController.deleteWorkout)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
