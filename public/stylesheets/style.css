@@ -42,8 +42,8 @@ a {
 */
 
 .smallImage{
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
 }
 .underline{
   text-decoration: underline;
@@ -54,7 +54,7 @@ a {
 
 .centerbutton{
   width: 525px;
-  height: 525px;
+  height: 250px;
   text-align: center;
   vertical-align:middle;
   margin-left: auto;
