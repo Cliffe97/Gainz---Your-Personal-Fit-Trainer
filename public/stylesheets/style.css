@@ -1,100 +1,57 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
-.centerImage{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-.titleFont{
-  font-size: 150pt;
-  color: red
-}
-.center{
-  text-align: center;
-}
-.greyBC{
-  background-color: grey;
-}
-
-.whiteBC{
-  background-color: white;
-}
-.btn{
-  width: 100px;
-  height: 100px;
-  background-color: red;
-  border-radius: 15px;
-}
-/*
-.background{
-  background-image: url(/images/Build-Lean-Muscle-1.png);
-  background-repeat: no-repeat;
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+  body, html {
+  height: 100%;
+  color: #777;
+  line-height: 1.8;
+  }
+  /* Create a Parallax Effect */
+  .bgimg-1, .bgimg-2, .bgimg-3 {
   background-attachment: fixed;
   background-position: center;
-}
-*/
-
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+  /* First image (Logo. Full height) */
+  .bgimg-1 {
+  background-image: url('https://c1.staticflickr.com/1/100/269115217_57105f98c5_b.jpg');
+  min-height: 110%;
+  }
+  /* Second image (Portfolio) */
+  .bgimg-2 {
+  background-image: url("https://c1.staticflickr.com/1/100/269115217_57105f98c5_b.jpg");
+  min-height: 400px;
+  }
+  /* Third image (Contact) */
+  .bgimg-3 {
+  background-image: url("https://c1.staticflickr.com/1/100/269115217_57105f98c5_b.jpg");
+  min-height: 400px;
+  }
+  .w3-wide {letter-spacing: 10px;}
+  .w3-hover-opacity {cursor: pointer;}
+  /* Turn off parallax scrolling for tablets and phones */
+  @media only screen and (max-device-width: 1024px) {
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+  background-attachment: scroll;
+  }
+  }
 .smallImage{
-  width: 400px;
-  height: 400px;
+  height: 300px;
+  width:300px;
 }
-.underline{
-  text-decoration: underline;
-}
-.rightSide{
-  float: right;
-}
-
-.centerbutton{
-  width: 525px;
-  height: 250px;
-  text-align: center;
-  vertical-align:middle;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0px;
-  font-size: 100pt
-}
-a:link {
-    color: white;
-    font-size: 20pt;
-    text-decoration: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    vertical-align: middle;
-    background-color: red
-}
-a:visited {
-  color: white;
-  font-size: 20pt;
-  text-decoration: none;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  margin: 4px 2px;
-  vertical-align: middle;
-  background-color: red
-}
-a:hover {
-    color: white;
-    background-color: red;
-    text-decoration: underline;
-    vertical-align: middle;
-    border: 5px solid #555555;
-}
-
-.containerBorder{
-  border: 5px solid red;
-  padding: 15px 32px;
-}
+// Navbar (sit on top)
+.w3-top
+  #myNavbar.w3-bar
+    a.w3-bar-item.w3-button.w3-hover-black.w3-hide-medium.w3-hide-large.w3-right(href='javascript:void(0);', onclick='toggleFunction()', title='Toggle Navigation Menu')
+      i.fa.fa-bars
+    a.w3-bar-item.w3-button(href='/home') HOME
+    a.w3-bar-item.w3-button.w3-hide-small(href='about')
+      i.fa.fa-user
+      |  ABOUT
+    a.w3-bar-item.w3-button.w3-hide-small(href='portfolio')
+      i.fa.fa-th
+      |  PORTFOLIO
+    a.w3-bar-item.w3-button.w3-hide-small(href='contact')
+      i.fa.fa-envelope
+      |  CONTACT
+    a.w3-bar-item.w3-button.w3-hide-small.w3-right.w3-hover-red(href='/')
+      i.fa.fa-search
