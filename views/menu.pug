@@ -5,7 +5,15 @@ block content
   p #{user.googleemail}
   br
   h2 Your Workouts:
-  
+  br
+  .dropdown
+    button.dropbtn
+      span 20 min HIIT Workout
+        .dropdown-content
+           a(href='#') 0.5 mile run
+           a(href='#') 30 push ups
+           a(href='#') 1 mile biking
+           a(href='#') 20 reps
   h2.center.underline New Workout:
   a.centerbutton(href="/premade") Pre-Made
   br

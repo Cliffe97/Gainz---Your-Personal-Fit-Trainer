@@ -114,6 +114,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 
 .dropdown-content {
     display: none;
+    left:100%;
+	  top:0;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
