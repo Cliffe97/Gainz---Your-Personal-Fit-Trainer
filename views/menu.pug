@@ -2,8 +2,11 @@ extends layout
 
 block content
   h1 Hello #{user.googlename}
+  p #{user.googleemail}
   br
-  h2.center.underline Workout:
+  h2 Your Workouts:
+  
+  h2.center.underline New Workout:
   a.centerbutton(href="/premade") Pre-Made
   br
   a.centerbutton(href="/customChoosing") Custom
