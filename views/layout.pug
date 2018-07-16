@@ -15,22 +15,29 @@ html
       a.w3-bar-item.w3-button.w3-hover-black.w3-hide-medium.w3-hide-large.w3-right(href='javascript:void(0);', onclick='toggleFunction()', title='Toggle Navigation Menu')
         i.fa.fa-bars
       a.w3-bar-item.w3-button(href='/') HOME
+      a.w3-bar-item.w3-button.w3-hide-small(href='/exerciseInfo')
+        i.fa.fa-th
+        |  EXERCISE INFO
+      a.w3-bar-item.w3-button.w3-hide-small(href='/preMade')
+        i.fa.fa-th
+        |   PRE-MADE ALL
+      if loggedIn
+        a.w3-bar-item.w3-button.w3-hide-small(href='/createIntervalWorkout')
+          i.fa.fa-th
+          |  CREATE CUSTOM
+      //a.w3-bar-item.w3-button.w3-hide-small(href='/contact')
+        //i.fa.fa-envelope
+        //|  CONTACT
       a.w3-bar-item.w3-button.w3-hide-small(href='/about')
         i.fa.fa-user
         |  ABOUT
-      a.w3-bar-item.w3-button.w3-hide-small(href='/portfolio')
-        i.fa.fa-th
-        |  PORTFOLIO
-      a.w3-bar-item.w3-button.w3-hide-small(href='/contact')
-        i.fa.fa-envelope
-        |  CONTACT
       if loggedIn
         a.w3-bar-item.w3-button.w3-hide-small.w3-right.w3-hover-red(href='/logout')
           span.fa.fa-logout
           | Logout
-        a.w3-bar-item.w3-button.w3-hide-small(href='/menu')
-          span.fa.fa-menu
-          | Menu
+        a.w3-bar-item.w3-button.w3-hide-small(href='/admin')
+          i.fa.fa-user
+          |  ADMIN
       else
         a.w3-bar-item.w3-button.w3-hide-small.w3-right.w3-hover-red(href='/auth/google')
           span.fa.fa-google-plus
@@ -38,10 +45,12 @@ html
 
     // Navbar on small screens
     #navDemo.w3-bar-block.w3-white.w3-hide.w3-hide-large.w3-hide-medium
-      a.w3-bar-item.w3-button(href='#about', onclick='toggleFunction()') ABOUT
-      a.w3-bar-item.w3-button(href='#portfolio', onclick='toggleFunction()') PORTFOLIO
-      a.w3-bar-item.w3-button(href='#contact', onclick='toggleFunction()') CONTACT
-      a.w3-bar-item.w3-button(href='#') SEARCH
+      a.w3-bar-item.w3-button(href='/about', onclick='toggleFunction()') ABOUT
+      a.w3-bar-item.w3-button(href='/exerciseInfo', onclick='toggleFunction()') Exercise Info
+      a.w3-bar-item.w3-button(href='/preMade', onclick='toggleFunction()') Pre-Made All
+      a.w3-bar-item.w3-button(href='/createIntervalWorkout', onclick='toggleFunction()') Create Custom
+      a.w3-bar-item.w3-button(href='/contact', onclick='toggleFunction()') CONTACT
+      a.w3-bar-item.w3-button(href='/') SEARCH
     // Footer
 
 
