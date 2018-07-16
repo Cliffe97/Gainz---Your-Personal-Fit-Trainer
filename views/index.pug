@@ -11,6 +11,8 @@ block content
           em A better you
 
   #portfolio.w3-content.w3-container.w3-padding-64
+    if loggedIn
+      h1.w3-center Hello #{user.googlename}
     h3.w3-center "Work in Silence, let your success be your noise"
   // First Parallax Image with Portfolio Text
   .bgimg-2.w3-display-container.w3-opacity-min
