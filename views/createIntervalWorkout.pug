@@ -4,37 +4,26 @@ block content
   body.greyBC
   .container.containerBorder
     br
-    img.centerImage(src ='/images/Build-Lean-Muscle-1.png')
-    fieldset
-      legend Create an Interval Workout
-      p Interval training is a type of training that involves a series of low to high intensity workouts interspersed with rest or relief periods.
-      p The high-intensity periods are typically at or close to anaerobic exercise, while the recovery periods involve activity of lower intensity.
-      ol
-        li Add a Workout name
-        li Add a time duration
-        li Add more workouts if desired
-      form(method="post" action="addMoreIntervalWorkout")
-        table
-          td
-            input(type='text', placeholder='Workout Name')
-          td
-            input(type='text', value=user.googleemail)
-          td
-            input(type='text', placeholder='Time Durations')
-          td
-            input(type='text', placeholder='Difficulty (1-5)')
-          td
-            input(type='text', placeholder='Body Focus')
-          td
-            input(type='text', placeholder='Training Type')
-          td
-            input(type='text', placeholder='Equipment')
-          td
-            input(type='text', placeholder='Exercise Durations')
-          td
-            button(onclick='del(this)') X
-          tbody#customTable
-        button(type='submit') Submit
-        br
-      button(onclick='newrow()') Add a Workout
-    br
+    // Third Parallax Image with Portfolio Text
+    .bgimg-3.w3-display-container.w3-opacity-min
+      .w3-display-middle
+        span.w3-xxlarge.w3-text-white.w3-wide Custom
+    p Create a custom workout!
+    form(method="post" action="addMoreIntervalWorkout")
+      table
+        td
+          input(type='text', placeholder='Workout Name')
+        td
+          input(type='text', value=user.googleemail)
+        td
+          input(type='text', placeholder='Timer')
+        td
+          input(type='text', placeholder='Recommended Goal')
+        td
+          input(type='text', placeholder='Category')
+        td
+          button(onclick='del(this)') X
+        tbody#customTable
+      button(type='submit') Submit
+      br
+    button(onclick='newrow()') Add a Workout

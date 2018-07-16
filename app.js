@@ -60,7 +60,7 @@ app.use((req,res,next)=>{
     res.locals.user=req.user
     res.locals.loggedIn=true
     if (req.user) {
-      if (req.user.googleemail=='gavinyhan@gmail.com' || req.user.googleemail=='mkleung@brandeis.edu') {
+      if (req.user.googleemail=='gavinyhan@gmail.com' || req.user.googleemail=='mkleung@brandeis.edu' || req.user.googleemail=='cliffe14@brandeis.edu' || req.user.googleemail=='humangainz@gmail.edu') {
         console.log("owner has logged in")
         res.locals.status='owner'
       } else {

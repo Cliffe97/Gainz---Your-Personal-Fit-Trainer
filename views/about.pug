@@ -20,7 +20,7 @@ block content
             i.fa.fa-user.w3-margin-right
             | Michael Leung
         br
-        img.w3-round.w3-image.w3-opacity.w3-hover-opacity-off(src ='/images/michael.jpg', alt='Photo of Me', width='300', height='300')
+        img.w3-round.w3-image.w3-opacity.w3-hover-opacity-off(src ='/images/michael.jpg',onclick='onClick(this)', alt='Michael Leung', width='300', height='300')
       // Hide this text on small devices
       .w3-col.m6.w3-hide-small.w3-padding-large
         p
@@ -36,7 +36,7 @@ block content
             i.fa.fa-user.w3-margin-right
             | Gavin Han
         br
-        img.w3-round.w3-image.w3-opacity.w3-hover-opacity-off(src ='/images/gavin.jpg', alt='Photo of Me', width='300', height='300')
+        img.w3-round.w3-image.w3-opacity.w3-hover-opacity-off(src ='/images/gavin.jpg',onclick='onClick(this)', alt='Gavin Han', width='300', height='300')
       // Hide this text on small devices
       .w3-col.m6.w3-hide-small.w3-padding-large
         p
@@ -53,13 +53,21 @@ block content
             i.fa.fa-user.w3-margin-right
             | Cliffe Gao
         br
-        img.w3-round.w3-image.w3-opacity.w3-hover-opacity-off(src ='/images/cliffe.jpg', alt='Photo of Me', width='300', height='300')
+        img.w3-round.w3-image.w3-opacity.w3-hover-opacity-off(src ='/images/cliffe.jpg',onclick='onClick(this)', alt='Cliffe Gao', width='300', height='300')
       // Hide this text on small devices
       .w3-col.m6.w3-hide-small.w3-padding-large
         p
           | Welcome to my website. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
           | dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
           | incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+    // Modal for full size images on click
+    #modal01.w3-modal.w3-black(onclick="this.style.display='none'")
+      span.w3-button.w3-large.w3-black.w3-display-topright(title='Close Modal Image')
+        i.fa.fa-remove
+      .w3-modal-content.w3-animate-zoom.w3-center.w3-transparent.w3-padding-64
+        img#img01.w3-image
+        p#caption.w3-opacity.w3-large
 
     p.w3-large.w3-center.w3-padding-16 Im really good at:
     p.w3-wide
@@ -77,3 +85,8 @@ block content
       | Photoshop
     .w3-light-grey
       .w3-container.w3-padding-small.w3-dark-grey.w3-center(style='width:75%') 75%
+
+  footer.w3-center.w3-black.w3-padding-64.w3-opacity.w3-hover-opacity-off
+    a.w3-button.w3-light-grey(href='/about')
+      i.fa.fa-arrow-up.w3-margin-right
+        | To the top
