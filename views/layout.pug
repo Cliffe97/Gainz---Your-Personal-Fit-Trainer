@@ -14,9 +14,11 @@ html
     #myNavbar.w3-bar
       a.w3-bar-item.w3-button.w3-hover-black.w3-hide-medium.w3-hide-large.w3-right(href='javascript:void(0);', onclick='toggleFunction()', title='Toggle Navigation Menu')
         i.fa.fa-bars
-      a.w3-bar-item.w3-button(href='/') HOME
+      a.w3-bar-item.w3-button(href='/')
+        i.fa.fa-home
+        |  HOME
       a.w3-bar-item.w3-button.w3-hide-small(href='/exerciseInfo')
-        i.fa.fa-th
+        i.fa.fa-info-circle
         |  EXERCISE INFO
       a.w3-bar-item.w3-button.w3-hide-small(href='/preMade')
         i.fa.fa-th
@@ -29,7 +31,7 @@ html
         //i.fa.fa-envelope
         //|  CONTACT
       a.w3-bar-item.w3-button.w3-hide-small(href='/about')
-        i.fa.fa-user
+        i.fa.fa-universal-access
         |  ABOUT
       if loggedIn
         a.w3-bar-item.w3-button.w3-hide-small.w3-right.w3-hover-red(href='/logout')
