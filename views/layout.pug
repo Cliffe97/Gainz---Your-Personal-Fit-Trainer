@@ -35,9 +35,10 @@ html
         a.w3-bar-item.w3-button.w3-hide-small.w3-right.w3-hover-red(href='/logout')
           span.fa.fa-logout
           | Logout
-        a.w3-bar-item.w3-button.w3-hide-small(href='/admin')
-          i.fa.fa-user
-          |  ADMIN
+        if status=='owner'
+          a.w3-bar-item.w3-button.w3-hide-small(href='/admin')
+            i.fa.fa-user
+            |  ADMIN
       else
         a.w3-bar-item.w3-button.w3-hide-small.w3-right.w3-hover-red(href='/auth/google')
           span.fa.fa-google-plus
