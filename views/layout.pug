@@ -72,6 +72,16 @@ html
       field.parentNode.parentNode.outerHTML = "";
       }
 
+      function addSection(where) {
+          var main = document.getElementById("section0");
+          var cntr = (main.datacntr || 0) + 1;
+          main.datacntr = cntr;
+
+          var clone = main.cloneNode(true);
+          clone.id = "section" + cntr;
+          where.parentNode.insertBefore(clone, where);
+      }
+
       function onClick(element) {
       document.getElementById("img01").src = element.src;
       document.getElementById("modal01").style.display = "block";
