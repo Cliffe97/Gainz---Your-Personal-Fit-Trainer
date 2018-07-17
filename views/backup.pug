@@ -1,0 +1,45 @@
+extends layout
+
+block content
+    body
+
+    form(method="post" action = "/saveWorkout")
+      label Enter Name of Workout:
+      input(name="Name")
+      br
+      label Enter Timer of Workout:
+      input(name="Timer")
+      br
+      label Enter Recommendation of Workout:
+      input(name="Rec")
+      br
+      label Enter Category of Workout:
+      input(name="Category")
+      br
+      button(type="submit") Submit
+
+    form(method="post" action="/savePlan")
+      table
+        td
+          input(name='Name', placeholder='Name of Workout')
+        td
+          input(name='Timer', placeholder='Set a Timer')
+        td
+          input(name="Rec", placeholde='Recommendation of Workout')
+        td
+          input(name="Category", placeholder='Category of Workout')
+        td
+          button(onclick='del(this)') X
+          tbody#customTable
+        button(type='submit') Submit
+        br
+      button(onclick='newrow()') Add a Workout
+
+
+    form(method="post" action= "/deleteWorkout")
+      ol
+        each w in workout
+          li
+            input(name="workoutName" value=w._id type="checkbox")
+            e #{w.Name} --
+      input(type="submit" value="Delete checked items")
