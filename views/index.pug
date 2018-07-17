@@ -10,128 +10,41 @@ block content
           br
           em A better you
 
-  #about.w3-content.w3-container.w3-padding-64
-    h3.w3-center ABOUT US
-    p.w3-center
-      em Brandeis University
-    p
-      | We are undergraduate students at Brandeis University in Waltham Massachusetts. This applications is for the Brandeis Justice Semester or JBS for short
-      | that focuses on Voice, Web, and Mobile Applications. This course is an intensive program that is 9 weeks long and taught by Professors Timothy Hickey and Marie Meteer.
-      | This is JBS summer 2018.
-    .w3-row
-      .w3-col.m6.w3-center.w3-padding-large
-        p
-          b
-            i.fa.fa-user.w3-margin-right
-            | Michael Leung
-        br
-        img.w3-round.w3-image.w3-opacity.w3-hover-opacity-off(src ='/images/michael.jpg', alt='Photo of Me', width='300', height='300')
-      // Hide this text on small devices
-      .w3-col.m6.w3-hide-small.w3-padding-large
-        p
-          | Welcome to my website. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-          | dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-          | incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-
-    .w3-row
-      .w3-col.m6.w3-center.w3-padding-large
-        p
-          b
-            i.fa.fa-user.w3-margin-right
-            | Gavin Han
-        br
-        img.w3-round.w3-image.w3-opacity.w3-hover-opacity-off(src ='/images/gavin.jpg', alt='Photo of Me', width='300', height='300')
-      // Hide this text on small devices
-      .w3-col.m6.w3-hide-small.w3-padding-large
-        p
-          | Welcome to my website. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-          | dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-          | incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-
-
-    .w3-row
-      .w3-col.m6.w3-center.w3-padding-large
-        p
-          b
-            i.fa.fa-user.w3-margin-right
-            | Cliffe Gao
-        br
-        img.w3-round.w3-image.w3-opacity.w3-hover-opacity-off(src ='/images/cliffe.jpg', alt='Photo of Me', width='300', height='300')
-      // Hide this text on small devices
-      .w3-col.m6.w3-hide-small.w3-padding-large
-        p
-          | Welcome to my website. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-          | dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-          | incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-    p.w3-large.w3-center.w3-padding-16 Im really good at:
-    p.w3-wide
-      i.fa.fa-camera
-      | Photography
-    .w3-light-grey
-      .w3-container.w3-padding-small.w3-dark-grey.w3-center(style='width:90%') 90%
-    p.w3-wide
-      i.fa.fa-laptop
-      | Web Design
-    .w3-light-grey
-      .w3-container.w3-padding-small.w3-dark-grey.w3-center(style='width:85%') 85%
-    p.w3-wide
-      i.fa.fa-photo
-      | Photoshop
-    .w3-light-grey
-      .w3-container.w3-padding-small.w3-dark-grey.w3-center(style='width:75%') 75%
-  .w3-row.w3-center.w3-dark-grey.w3-padding-16
-    .w3-quarter.w3-section
-      span.w3-xlarge 0
-      br
-      |     Partners
-    .w3-quarter.w3-section
-      span.w3-xlarge 0.3
-      br
-      |     Projects Done
-    .w3-quarter.w3-section
-      span.w3-xlarge 3
-      br
-      |     Happy Clients
-    .w3-quarter.w3-section
-      span.w3-xlarge A few
-      br
-      |     Meetings
-  // Second Parallax Image with Portfolio Text
+  #portfolio.w3-content.w3-container.w3-padding-64
+    if loggedIn
+      h1.w3-center Hello #{user.googlename}
+    h3.w3-center "Work in Silence, let your success be your noise"
+  // First Parallax Image with Portfolio Text
   .bgimg-2.w3-display-container.w3-opacity-min
     .w3-display-middle
-      span.w3-xxlarge.w3-text-white.w3-wide PORTFOLIO
+      span.w3-xxlarge.w3-text-white.w3-wide PRE-MADE WORKOUTS
   // Container (Portfolio Section)
   #portfolio.w3-content.w3-container.w3-padding-64
-    h3.w3-center OUR TARGET AUDIENCE
+    h3.w3-center FEATURED PRE-MADE WORKOUTS
     p.w3-center
       em
-        | Here are some of my latest lorem work ipsum tipsum.
-        br
-        |  Click on the images to make them bigger
+        | Here are some of the latest workouts.
     br
     // Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width)
     .w3-row-padding.w3-center
       .w3-col.m3
-        img.w3-hover-opacity(src='/w3images/p1.jpg', style='width:100%', onclick='onClick(this)', alt='The mist over the mountains')
+        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='The mist over the mountains')
       .w3-col.m3
-        img.w3-hover-opacity(src='/w3images/p2.jpg', style='width:100%', onclick='onClick(this)', alt='Coffee beans')
+        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='Coffee beans')
       .w3-col.m3
-        img.w3-hover-opacity(src='/w3images/p3.jpg', style='width:100%', onclick='onClick(this)', alt='Bear closeup')
+        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='Bear closeup')
       .w3-col.m3
-        img.w3-hover-opacity(src='/w3images/p4.jpg', style='width:100%', onclick='onClick(this)', alt='Quiet ocean')
+        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='Quiet ocean')
     .w3-row-padding.w3-center.w3-section
       .w3-col.m3
-        img.w3-hover-opacity(src='/w3images/p5.jpg', style='width:100%', onclick='onClick(this)', alt='The mist')
+        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='The mist')
       .w3-col.m3
-        img.w3-hover-opacity(src='/w3images/p6.jpg', style='width:100%', onclick='onClick(this)', alt='My beloved typewriter')
+        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='My beloved typewriter')
       .w3-col.m3
-        img.w3-hover-opacity(src='/w3images/p7.jpg', style='width:100%', onclick='onClick(this)', alt='Empty ghost train')
+        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='Empty ghost train')
       .w3-col.m3
-        img.w3-hover-opacity(src='/w3images/p8.jpg', style='width:100%', onclick='onClick(this)', alt='Sailing')
-      button.w3-button.w3-padding-large.w3-light-grey(style='margin-top:64px') LOAD MORE
+        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='Sailing')
+      a.button.w3-button.w3-padding-large.w3-light-grey(style='margin-top:64px' href="/preMade") MORE PRE-MADE WORKOUTS
   // Modal for full size images on click
   #modal01.w3-modal.w3-black(onclick="this.style.display='none'")
     span.w3-button.w3-large.w3-black.w3-display-topright(title='Close Modal Image')
@@ -139,6 +52,32 @@ block content
     .w3-modal-content.w3-animate-zoom.w3-center.w3-transparent.w3-padding-64
       img#img01.w3-image
       p#caption.w3-opacity.w3-large
+  if loggedIn
+    // First Parallax Image with Portfolio Text
+    .bgimg-2.w3-display-container.w3-opacity-min
+      .w3-display-middle
+        span.w3-xxlarge.w3-text-white.w3-wide CUSTOM WORKOUTS
+    // Container (Portfolio Section)
+    #portfolio.w3-content.w3-container.w3-padding-64
+      p Create a custom workout!
+      form(method="post" action="addMoreIntervalWorkout")
+        table
+          td
+            input(type='text', placeholder='Workout Name')
+          td
+            input(type='text', value=user.googleemail)
+          td
+            input(type='text', placeholder='Timer')
+          td
+            input(type='text', placeholder='Recommended Goal')
+          td
+            input(type='text', placeholder='Category')
+          td
+            button(onclick='del(this)') X
+          tbody#customTable
+        button(type='submit') Submit
+        br
+      button(onclick='newrow()') Add a Workout
   // Third Parallax Image with Portfolio Text
   .bgimg-3.w3-display-container.w3-opacity-min
     .w3-display-middle
@@ -179,6 +118,6 @@ block content
           |  SEND MESSAGE
 
   footer.w3-center.w3-black.w3-padding-64.w3-opacity.w3-hover-opacity-off
-    a.w3-button.w3-light-grey(href='#home')
+    a.w3-button.w3-light-grey(href='/')
       i.fa.fa-arrow-up.w3-margin-right
         | To the top

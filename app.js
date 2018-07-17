@@ -14,10 +14,11 @@ const repWorkoutController = require('./controllers/repWorkoutController')
 const intervalWorkoutController = require('./controllers/intervalWorkoutController')
 const customChoosingController = require('./controllers/customChoosingController')
 
-const menuController = require('./controllers/menuController')
+const menuController = require('./controllers/menuController');
 const filterController = require('./controllers/filterController');
 const setController = require('./controllers/setController');
-
+const aboutController = require('./controllers/aboutController')
+const preMadeController = require('./controllers/preMadeController')
 
 
 //authentication with passport
@@ -60,7 +61,7 @@ app.use((req,res,next)=>{
     res.locals.user=req.user
     res.locals.loggedIn=true
     if (req.user) {
-      if (req.user.googleemail=='gavinyhan@gmail.com') {
+      if (req.user.googleemail=='gavinyhan@gmail.com' || req.user.googleemail=='mkleung@brandeis.edu' || req.user.googleemail=='cliffe14@brandeis.edu' || req.user.googleemail=='humangainz@gmail.edu') {
         console.log("owner has logged in")
         res.locals.status='owner'
       } else {
@@ -94,13 +95,13 @@ app.get('/auth/google',
 
   app.get('/login/google/callback',
     passport.authenticate('google', {
-      successRedirect:'/menu',
+      successRedirect:'/',
       failureRedirect:'/loginerror'
     }))
 
 app.get('/login/authorized',
   passport.authenticate('google', {
-    successRedirect:'/menu',
+    successRedirect:'/',
     failureRedirect:'/loginerror'
   }))
 
@@ -150,6 +151,10 @@ app.get('/createRepWorkout',
             createRepWorkoutController.renderMain)
 app.get('/menu',
             menuController.renderMain)
+app.get('/about',
+            aboutController.renderMain)
+app.get('/preMade',
+            preMadeController.renderMain)
 app.get('/customChoosing',
             customChoosingController.renderMain)
 
