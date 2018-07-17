@@ -15,6 +15,8 @@ const intervalWorkoutController = require('./controllers/intervalWorkoutControll
 const customChoosingController = require('./controllers/customChoosingController')
 
 const menuController = require('./controllers/menuController')
+const filterController = require('./controllers/filterController');
+const setController = require('./controllers/setController');
 
 
 
@@ -101,6 +103,11 @@ app.get('/login/authorized',
     successRedirect:'/menu',
     failureRedirect:'/loginerror'
   }))
+
+app.get('/admin',  filterController.getAllWorkouts)
+app.post('/savePlan', setController.savePlan)
+//app.get('/c'ategory', filterController.getAllWorkouts)
+app.post('/deleteWorkout', filterController.deleteWorkout)
 
 //route middleware to make sure a user is logged inspect
 function isLoggedIn(req,res,next){
