@@ -13,7 +13,7 @@ exports.getAllWorkouts = ( req, res ) => {
     .exec()
     .then( ( workout ) => {
       console.log("workouts: "+ workout)
-      res.render( 'admin', {
+      res.render( 'createIntervalWorkout', {
         workout: workout
       } );
     } )
@@ -66,7 +66,7 @@ exports.saveWorkout = ( req, res ) => {
 
   newWorkout.save()
     .then( () => {
-      res.redirect( '/admin' );
+      res.redirect( '/createIntervalWorkout' );
     } )
     .catch( error => {
       res.send( error );
@@ -79,16 +79,16 @@ exports.deleteWorkout = (req, res) => {
   if (typeof(workoutName)=='string') {
       PremadeWorkout.deleteOne({_id:workoutName})
            .exec()
-           .then(()=>{res.redirect('/admin')})
+           .then(()=>{res.redirect('/createIntervalWorkout')})
            .catch((error)=>{res.send(error)})
   } else if (typeof(workoutName)=='object'){
       PremadeWorkout.deleteMany({_id:{$in:workoutName}})
            .exec()
-           .then(()=>{res.redirect('/admin')})
+           .then(()=>{res.redirect('/createIntervalWorkout')})
            .catch((error)=>{res.send(error)})
   } else if (typeof(workoutName)=='undefined'){
       console.log("This is if they didn't select a post")
-      res.redirect('/admin')
+      res.redirect('/createIntervalWorkout')
   } else {
     console.log("This shouldn't happen!")
     res.send(`unknown workoutName: ${workoutName}`)

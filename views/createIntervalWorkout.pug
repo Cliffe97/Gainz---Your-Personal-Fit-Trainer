@@ -81,3 +81,9 @@ block content
       button(type='submit') Submit
       br
     //button(onclick='newrow()') Add a Workout
+
+      br
+      ol
+        each w in workout
+          li
+            w.Name
