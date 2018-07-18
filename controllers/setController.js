@@ -1,5 +1,6 @@
 'use strict'
 const PremadeWorkout = require( '../models/PremadeWorkout' );
+const Plan = require('../models/Plan');
 console.log("loading the set Controller")
 
 var async = require('async');
@@ -9,14 +10,14 @@ var async = require('async');
 //   res.render('repWorkout')
 // }
 
-exports.getAllWorkouts = ( req, res ) => {
+exports.getAllPlans= ( req, res ) => {
   console.log('in getAllWorkouts')
-  PremadeWorkout.find( {} )
+  Plan.find( {} )
     .exec()
-    .then( ( workout ) => {
-      console.log("workouts: "+ workout)
-      res.render( 'admin', {
-        workout: workout
+    .then( ( plan ) => {
+      console.log("plans: "+ plan)
+      res.render( 'preMade', {
+        plan: plan
       } );
     } )
     .catch( ( error ) => {
@@ -34,10 +35,6 @@ exports.savePlan = ( req, res ) => {
 
   console.log(req.body);
 
-  res.status(400);
-  res.json({});
-  return;
-
   //create a list of workouts
   //which comes from req.body
   //const workout_list = [];
@@ -52,13 +49,17 @@ exports.savePlan = ( req, res ) => {
 
   workout_list.push(workout_obj)
   */
-  // const workout_obj = {
-  //   Name: req.body.Name,
-  //   Maker: req.body.Maker,
-  //   Duration: req.body.Duration,
-  //   Difficulty: req.body.Difficulty
-  // }
+  const workout_obj = {
+    Name: req.body.Name,
+    Timer: req.body.Timer,
+    Rec: req.body.Rec,
+    Category: req.body.Category
+  }
 
+  const workout_list = {
+    
+  }
+  workout_list.push(workout_obj);
   //save workouts
   for(let workout of workout_list){
     function_list.push(function(callback){
@@ -97,7 +98,7 @@ exports.savePlan = ( req, res ) => {
     if(err){
       next(err);
     } else {
-      //redirect
+      res.redirect('/preMade');
     }
   })
 };

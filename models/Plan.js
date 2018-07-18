@@ -1,9 +1,11 @@
 'use strict';
 const mongoose = require( 'mongoose' );
 
+var Schema = mongoose.Schema;
+
 var planSchema = mongoose.Schema( {
   set: {
-    type: [Schema.objectId],
+    type: [Schema.ObjectId],
     ref: 'premadeworkout',
     required: true
   }

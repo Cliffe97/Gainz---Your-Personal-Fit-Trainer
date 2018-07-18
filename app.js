@@ -106,7 +106,8 @@ app.get('/login/authorized',
   }))
 
 app.get('/admin',  filterController.getAllWorkouts)
-app.post('/savePlan', setController.savePlan)
+app.post('/savePlan', filterController.saveWorkout)
+//app.get('/preMade', setController.getAllPlans)
 //app.get('/c'ategory', filterController.getAllWorkouts)
 app.post('/deleteWorkout', filterController.deleteWorkout)
 
@@ -153,8 +154,8 @@ app.get('/menu',
             menuController.renderMain)
 app.get('/about',
             aboutController.renderMain)
-app.get('/preMade',
-            preMadeController.renderMain)
+// app.get('/preMade',
+//             preMadeController.renderMain)
 app.get('/customChoosing',
             customChoosingController.renderMain)
 
