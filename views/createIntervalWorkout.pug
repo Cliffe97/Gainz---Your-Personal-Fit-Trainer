@@ -16,7 +16,7 @@ block content
           input(type='text', name='Email',value=user.googleemail)
         li
             td
-              input(type='text', name='Exercise1', placeholder='Exercise Name')
+              input(type='text', name='Exercise1',placeholder='Exercise Name')
             td
               input(type='text', name='Timer1', placeholder='Timer')
             td
@@ -86,5 +86,5 @@ block content
     ol
       each w in workout
         li
-          #{w.Name} --
-          #{w.Exercise1}
+          | #{w.Name} --
+          | #{w.Exercise1}
