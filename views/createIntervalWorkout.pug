@@ -83,7 +83,8 @@ block content
     //button(onclick='newrow()') Add a Workout
 
       br
-      ol
-        each w in workout
-          li
-            w.Name
+    ol
+      each w in workout
+        li
+          #{w.Name} --
+          #{w.Exercise1}

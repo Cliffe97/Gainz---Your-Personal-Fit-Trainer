@@ -105,8 +105,8 @@ app.get('/login/authorized',
     failureRedirect:'/loginerror'
   }))
 
-app.get('/admin',  filterController.getAllWorkouts)
-app.post('/savePlan', filterController.saveWorkout)
+app.get('/createIntervalWorkout',  filterController.getAllWorkouts)
+app.post('/saveWorkout', filterController.saveWorkout)
 //app.get('/preMade', setController.getAllPlans)
 //app.get('/c'ategory', filterController.getAllWorkouts)
 app.post('/deleteWorkout', filterController.deleteWorkout)
@@ -146,8 +146,8 @@ app.use((req,res,next)=>{
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.get('/createIntervalWorkout',
-            createIntervalWorkoutController.renderMain)
+//app.get('/createIntervalWorkout',
+          //  createIntervalWorkoutController.renderMain)
 app.get('/createRepWorkout',
             createRepWorkoutController.renderMain)
 app.get('/menu',

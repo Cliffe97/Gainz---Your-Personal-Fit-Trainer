@@ -1,5 +1,6 @@
 'use strict'
 const PremadeWorkout = require( '../models/PremadeWorkout' );
+const user = require('../models/user');
 console.log("loading the filter Controller")
 
 // exports.renderMain =  (req,res) => {
