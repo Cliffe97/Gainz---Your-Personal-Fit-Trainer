@@ -10,20 +10,74 @@ block content
         span.w3-xxlarge.w3-text-white.w3-wide Custom
     p Create a custom workout!
     form(method="post" action="addMoreIntervalWorkout")
-      table
+      ol
         td
-          input(type='text', placeholder='Workout Name')
-        td
-          input(type='text', value=user.googleemail)
-        td
-          input(type='text', placeholder='Timer')
-        td
-          input(type='text', placeholder='Recommended Goal')
-        td
-          input(type='text', placeholder='Category')
-        td
-          button(onclick='del(this)') X
-        tbody#customTable
+          input(type='text', name='Name',placeholder='Workout Name')
+          input(type='text', name='Email',value=user.googleemail)
+        li
+            td
+              input(type='text', name='Exercise1', placeholder='Exercise Name')
+            td
+              input(type='text', name='Timer1', placeholder='Timer')
+            td
+              input(type='text', name='Rec1', placeholder='Recommended Goal')
+            td
+              input(type='text', name='Category1',placeholder='Category')
+        li
+            td
+              input(type='text', name='Exercise2',placeholder='Exercise Name')
+            td
+              input(type='text', name='Timer2', placeholder='Timer')
+            td
+              input(type='text', name='Rec2',placeholder='Recommended Goal')
+            td
+              input(type='text', name='Category2', placeholder='Category')
+        li
+            td
+              input(type='text', name='Exercise3',placeholder='Exercise Name')
+            td
+              input(type='text', name='Timer3',placeholder='Timer')
+            td
+              input(type='text', name='Rec3',placeholder='Recommended Goal')
+            td
+              input(type='text', name='Category3', placeholder='Category')
+        li
+            td
+              input(type='text', name='Exercise4',placeholder='Exercise Name')
+            td
+              input(type='text', name='Timer4',placeholder='Timer')
+            td
+              input(type='text', name='Rec4',placeholder='Recommended Goal')
+            td
+              input(type='text', name='Category4', placeholder='Category')
+        li
+            td
+              input(type='text', name='Exercise5',placeholder='Exercise Name')
+            td
+              input(type='text', name='Timer5',placeholder='Timer')
+            td
+              input(type='text', name='Rec5',placeholder='Recommended Goal')
+            td
+              input(type='text', name='Category5', placeholder='Category')
+        li
+            td
+              input(type='text', name='Exercise6',placeholder='Exercise Name')
+            td
+              input(type='text', name='Timer6',placeholder='Timer')
+            td
+              input(type='text', name='Rec6',placeholder='Recommended Goal')
+            td
+              input(type='text', name='Category6', placeholder='Category')
+        li
+            td
+              input(type='text', name='Exercise7',placeholder='Exercise Name')
+            td
+              input(type='text', name='Timer7',placeholder='Timer')
+            td
+              input(type='text', name='Rec7',placeholder='Recommended Goal')
+            td
+              input(type='text', name='Category7', placeholder='Category')
+        //tbody#customTable
       button(type='submit') Submit
       br
-    button(onclick='newrow()') Add a Workout
+    //button(onclick='newrow()') Add a Workout
