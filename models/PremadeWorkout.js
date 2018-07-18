@@ -10,12 +10,28 @@ var workoutSchema = mongoose.Schema( {
   Category1: String,
   Exercise2: String,
   Timer2: String,
-  Rec3: String,
-  Category3: String,
+  Rec2: String,
+  Category2: String,
   Exercise3: String,
   Timer3: String,
   Rec3: String,
-  Category3: String
+  Category3: String,
+  Exercise4: String,
+  Timer4: String,
+  Rec4: String,
+  Category4: String,
+  Exercise5: String,
+  Timer5: String,
+  Rec5: String,
+  Category5: String,
+  Exercise6: String,
+  Timer6: String,
+  Rec6: String,
+  Category6: String,
+  Exercise7: String,
+  Timer7: String,
+  Rec7: String,
+  Category7: String
 } );
 
 

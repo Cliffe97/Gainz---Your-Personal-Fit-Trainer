@@ -40,10 +40,26 @@ exports.saveWorkout = ( req, res ) => {
     Timer2: req.body.Timer2,
     Rec2: req.body.Rec2,
     Category2:req.body.Category2,
-    Exercise1: req.body.Exercise3,
-    Timer1: req.body.Timer3,
-    Rec1: req.body.Rec3,
-    Category1:req.body.Category3
+    Exercise3: req.body.Exercise3,
+    Timer3: req.body.Timer3,
+    Rec3: req.body.Rec3,
+    Category3:req.body.Category3,
+    Exercise4: req.body.Exercise4,
+    Timer4: req.body.Timer4,
+    Rec4: req.body.Rec4,
+    Category4:req.body.Category4,
+    Exercise5: req.body.Exercise5,
+    Timer5: req.body.Timer5,
+    Rec5: req.body.Rec5,
+    Category5:req.body.Category5,
+    Exercise6: req.body.Exercise6,
+    Timer6: req.body.Timer6,
+    Rec6: req.body.Rec6,
+    Category6:req.body.Category6,
+    Exercise7: req.body.Exercise7,
+    Timer7: req.body.Timer7,
+    Rec7: req.body.Rec7,
+    Category7:req.body.Category7
   } )
 
   //console.log("posts = "newPost)
