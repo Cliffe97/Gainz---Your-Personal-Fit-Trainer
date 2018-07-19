@@ -83,8 +83,11 @@ block content
     //button(onclick='newrow()') Add a Workout
 
       br
+  form(method="post" action="/deleteWorkout")
     ol
       each w in workout
         li
+          input(name="workoutName" value=w._id type="checkbox")
           | #{w.Name} --
-          | #{w.Exercise1}
+          | #{w.Exercise1}--
+    input(type = "submit" value = "Delete Checked Workouts")
