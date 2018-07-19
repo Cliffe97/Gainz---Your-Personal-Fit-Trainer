@@ -103,7 +103,7 @@ exports.deleteWorkout = (req, res) => {
               .then( ( workout ) => {
                 console.log("workouts: "+ workout)
                 res.render( 'createIntervalWorkout', {
-                  workout: workout
+                  w: workout
                 } );
               } )
               .catch( ( error ) => {
