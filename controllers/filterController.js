@@ -32,7 +32,7 @@ exports.saveWorkout = ( req, res ) => {
   //console.dir(req)
   let newWorkout = new PremadeWorkout( {
     Name: req.body.Name,
-    Email: user.googleemail,
+    Email: req.body.Email,
     Exercise1: req.body.Exercise1,
     Timer1: req.body.Timer1,
     Rec1: req.body.Rec1,
