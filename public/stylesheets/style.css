@@ -161,3 +161,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
   opacity: 1;
   right: 0;
 }
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 75%;
+    
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 1px;
+}

@@ -22,7 +22,11 @@ block content
             td
               input(type='text', name='Rec1', placeholder='Recommended Goal')
             td
-              input(type='text', name='Category1',placeholder='Category')
+              select(type='text', name='Category1')
+                option(value='Total') Total Body
+                option(value='Upper') Upper
+                option(value='Lower') Lower
+                option(value='Core') Core
         li
             td
               input(type='text', name='Exercise2',placeholder='Exercise Name')
@@ -31,7 +35,11 @@ block content
             td
               input(type='text', name='Rec2',placeholder='Recommended Goal')
             td
-              input(type='text', name='Category2', placeholder='Category')
+              select(type='text', name='Category2')
+                option(value='Total') Total Body
+                option(value='Upper') Upper
+                option(value='Lower') Lower
+                option(value='Core') Core
         li
             td
               input(type='text', name='Exercise3',placeholder='Exercise Name')
@@ -40,7 +48,11 @@ block content
             td
               input(type='text', name='Rec3',placeholder='Recommended Goal')
             td
-              input(type='text', name='Category3', placeholder='Category')
+              select(type='text', name='Category3')
+                option(value='Total') Total Body
+                option(value='Upper') Upper
+                option(value='Lower') Lower
+                option(value='Core') Core
         li
             td
               input(type='text', name='Exercise4',placeholder='Exercise Name')
@@ -49,7 +61,11 @@ block content
             td
               input(type='text', name='Rec4',placeholder='Recommended Goal')
             td
-              input(type='text', name='Category4', placeholder='Category')
+              select(type='text', name='Category4')
+                option(value='Total') Total Body
+                option(value='Upper') Upper
+                option(value='Lower') Lower
+                option(value='Core') Core
         li
             td
               input(type='text', name='Exercise5',placeholder='Exercise Name')
@@ -58,7 +74,11 @@ block content
             td
               input(type='text', name='Rec5',placeholder='Recommended Goal')
             td
-              input(type='text', name='Category5', placeholder='Category')
+              select(type='text', name='Category5')
+                option(value='Total') Total Body
+                option(value='Upper') Upper
+                option(value='Lower') Lower
+                option(value='Core') Core
         li
             td
               input(type='text', name='Exercise6',placeholder='Exercise Name')
@@ -67,7 +87,11 @@ block content
             td
               input(type='text', name='Rec6',placeholder='Recommended Goal')
             td
-              input(type='text', name='Category6', placeholder='Category')
+              select(type='text', name='Category6')
+                option(value='Total') Total Body
+                option(value='Upper') Upper
+                option(value='Lower') Lower
+                option(value='Core') Core
         li
             td
               input(type='text', name='Exercise7',placeholder='Exercise Name')
@@ -76,15 +100,60 @@ block content
             td
               input(type='text', name='Rec7',placeholder='Recommended Goal')
             td
-              input(type='text', name='Category7', placeholder='Category')
+              select(type='text', name='Category7')
+                option(value='Total') Total Body
+                option(value='Upper') Upper
+                option(value='Lower') Lower
+                option(value='Core') Core
         //tbody#customTable
       button(type='submit') Submit
       br
     //button(onclick='newrow()') Add a Workout
 
       br
-    ol
-      each w in workout
-        li
-          | #{w.Name} --
-          | #{w.Exercise1}
+    form(method="post" action="/deleteWorkout")
+      ol
+        each w in workout
+          li
+            input(name="workoutName" value=w._id type="checkbox")
+            table
+              tr
+                th Workout Name: #{w.Name}
+                th Email: #{w.Email}
+              tr
+                td Exercise Name: #{w.Exercise1}
+                td Timer: #{w.Timer1}
+                td Recommended Goal: #{w.Rec1}
+                td Category: #{w.Category1}
+              tr
+                td Exercise Name: #{w.Exercise2}
+                td Timer: #{w.Timer2}
+                td Recommended Goal: #{w.Rec2}
+                td Category: #{w.Category2}
+              tr
+                td Exercise Name: #{w.Exercise3}
+                td Timer: #{w.Timer3}
+                td Recommended Goal: #{w.Rec3}
+                td Category: #{w.Category3}
+              tr
+                td Exercise Name: #{w.Exercise4}
+                td Timer: #{w.Timer4}
+                td Recommended Goal: #{w.Rec4}
+                td Category: #{w.Category4}
+              tr
+                td Exercise Name: #{w.Exercise5}
+                td Timer: #{w.Timer5}
+                td Recommended Goal: #{w.Rec5}
+                td Category: #{w.Category5}
+              tr
+                td Exercise Name: #{w.Exercise6}
+                td Timer: #{w.Timer6}
+                td Recommended Goal: #{w.Rec6}
+                td Category: #{w.Category6}
+              tr
+                td Exercise Name: #{w.Exercise7}
+                td Timer: #{w.Timer7}
+                td Recommended Goal: #{w.Rec7}
+                td Category: #{w.Category7}
+          br
+      input(type = "submit" value = "Delete Checked Workouts")

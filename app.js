@@ -151,6 +151,7 @@ app.use('/users', usersRouter);
 app.get('/createRepWorkout',
             createRepWorkoutController.renderMain)
 app.get('/menu',
+            menuController.attachFilms,
             menuController.renderMain)
 app.get('/about',
             aboutController.renderMain)

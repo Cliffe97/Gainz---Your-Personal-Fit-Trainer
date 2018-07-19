@@ -59,17 +59,105 @@ block content
         span.w3-xxlarge.w3-text-white.w3-wide CUSTOM WORKOUTS
     // Container (Portfolio Section)
     #portfolio.w3-content.w3-container.w3-padding-64
-      form(method="post" action="addMoreIntervalWorkout")
-          table#section0
-            td
-              input(type='text', name='text1', value='Text1')
-            td
-              input(type='text', name='text2', value='Text2', size='40')
-            td
-              button(onclick='del(this)') X
-          button(type='submit') Submit
-      button(onclick='addSection(this)') Add a Workout
-      br
+      p Create a custom workout
+      form(method="post" action="saveWorkout")
+        ol
+          td
+            input(type='text', name='Name',placeholder='Workout Name')
+            input(type='text', name='Email',value=user.googleemail)
+          li
+              td
+                input(type='text', name='Exercise1',placeholder='Exercise Name')
+              td
+                input(type='text', name='Timer1', placeholder='Timer')
+              td
+                input(type='text', name='Rec1', placeholder='Recommended Goal')
+              td
+                select(type='text', name='Category1')
+                  option(value='Total') Total Body
+                  option(value='Upper') Upper
+                  option(value='Lower') Lower
+                  option(value='Core') Core
+          li
+              td
+                input(type='text', name='Exercise2',placeholder='Exercise Name')
+              td
+                input(type='text', name='Timer2', placeholder='Timer')
+              td
+                input(type='text', name='Rec2',placeholder='Recommended Goal')
+              td
+                select(type='text', name='Category2')
+                  option(value='Total') Total Body
+                  option(value='Upper') Upper
+                  option(value='Lower') Lower
+                  option(value='Core') Core
+          li
+              td
+                input(type='text', name='Exercise3',placeholder='Exercise Name')
+              td
+                input(type='text', name='Timer3',placeholder='Timer')
+              td
+                input(type='text', name='Rec3',placeholder='Recommended Goal')
+              td
+                select(type='text', name='Category3')
+                  option(value='Total') Total Body
+                  option(value='Upper') Upper
+                  option(value='Lower') Lower
+                  option(value='Core') Core
+          li
+              td
+                input(type='text', name='Exercise4',placeholder='Exercise Name')
+              td
+                input(type='text', name='Timer4',placeholder='Timer')
+              td
+                input(type='text', name='Rec4',placeholder='Recommended Goal')
+              td
+                select(type='text', name='Category4')
+                  option(value='Total') Total Body
+                  option(value='Upper') Upper
+                  option(value='Lower') Lower
+                  option(value='Core') Core
+          li
+              td
+                input(type='text', name='Exercise5',placeholder='Exercise Name')
+              td
+                input(type='text', name='Timer5',placeholder='Timer')
+              td
+                input(type='text', name='Rec5',placeholder='Recommended Goal')
+              td
+                select(type='text', name='Category5')
+                  option(value='Total') Total Body
+                  option(value='Upper') Upper
+                  option(value='Lower') Lower
+                  option(value='Core') Core
+          li
+              td
+                input(type='text', name='Exercise6',placeholder='Exercise Name')
+              td
+                input(type='text', name='Timer6',placeholder='Timer')
+              td
+                input(type='text', name='Rec6',placeholder='Recommended Goal')
+              td
+                select(type='text', name='Category6')
+                  option(value='Total') Total Body
+                  option(value='Upper') Upper
+                  option(value='Lower') Lower
+                  option(value='Core') Core
+          li
+              td
+                input(type='text', name='Exercise7',placeholder='Exercise Name')
+              td
+                input(type='text', name='Timer7',placeholder='Timer')
+              td
+                input(type='text', name='Rec7',placeholder='Recommended Goal')
+              td
+                select(type='text', name='Category7')
+                  option(value='Total') Total Body
+                  option(value='Upper') Upper
+                  option(value='Lower') Lower
+                  option(value='Core') Core
+        button(type='submit') Submit
+        br
   // Third Parallax Image with Portfolio Text
   .bgimg-3.w3-display-container.w3-opacity-min
     .w3-display-middle
