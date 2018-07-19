@@ -95,3 +95,23 @@ exports.deleteWorkout = (req, res) => {
     res.send(`unknown workoutName: ${workoutName}`)
    }
 };
+ exports.selectWorkout = (req, res) => {
+   console.log("in selectWorkout")
+   let workoutName = req.body.workoutName
+   PremadeWorkout.findOne({_id:workoutName})
+              .exec()
+              .then( ( workout ) => {
+                console.log("workouts: "+ workout)
+                res.render( 'createIntervalWorkout', {
+                  workout: workout
+                } );
+              } )
+              .catch( ( error ) => {
+                console.log( error.message );
+                return [];
+              } )
+              .then( () => {
+                console.log( 'RepWorkout promise complete' );
+              } );
+
+ }

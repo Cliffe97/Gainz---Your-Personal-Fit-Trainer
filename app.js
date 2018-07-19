@@ -110,6 +110,8 @@ app.post('/saveWorkout', filterController.saveWorkout)
 //app.get('/preMade', setController.getAllPlans)
 //app.get('/c'ategory', filterController.getAllWorkouts)
 app.post('/deleteWorkout', filterController.deleteWorkout)
+app.post('/selectWorkout', filterController.selectWorkout)
+
 
 //route middleware to make sure a user is logged inspect
 function isLoggedIn(req,res,next){
