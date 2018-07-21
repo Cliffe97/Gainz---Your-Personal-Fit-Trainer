@@ -91,6 +91,12 @@ function process_request(req, res){
     console.log(selectedWorkout)
     console.log(selectedTimer)
     console.log(selectedRec)
+    if ( selectedTimer[0] == "0"){
+      console.log("COMPAR")
+    } else {
+      console.log("Stringggggg")
+
+    }
     output_string = "Starting " + selectedName[0] + ". First exercise is " + selectedWorkout[0];
   } else {
     output_string = "oh no!";
