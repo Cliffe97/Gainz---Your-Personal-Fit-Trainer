@@ -10,7 +10,9 @@ service.use(bodyParser.json());
 var server = service.listen(8081, function(){
 console.log('API server listening...')
 })
-function MyCSV(WORKOUT1, TIMER1, REC1,	WORKOUT2,	TIMER2, REC2, WORKOUT3,	TIMER3,	REC3,	WORKOUT4, TIMER4,	REC4,	WORKOUT5,	TIMER5,	REC5, WORKOUT6, TIMER6, REC6, WORKOUT7, TIMER7, REC7){
+function MyCSV(NAME,CATEGORY,WORKOUT1, TIMER1, REC1,	WORKOUT2,	TIMER2, REC2, WORKOUT3,	TIMER3,	REC3,	WORKOUT4, TIMER4,	REC4,	WORKOUT5,	TIMER5,	REC5, WORKOUT6, TIMER6, REC6, WORKOUT7, TIMER7, REC7){
+  this.name = NAME
+  this.category = CATEGORY
   this.workout1 = WORKOUT1
   this.timer1 = TIMER1
   this.rec1 = REC1
@@ -35,6 +37,10 @@ function MyCSV(WORKOUT1, TIMER1, REC1,	WORKOUT2,	TIMER2, REC2, WORKOUT3,	TIMER3,
 }
 
 var MyData = [];
+var selectedName = [];
+var selectedWorkout = [];
+var selectedTimer = [];
+var selectedRec = [];
 
 obj.from.path('Workout.csv').to.array(function (data) {
     for (var index = 0; index < data.length; index++) {
@@ -42,7 +48,7 @@ obj.from.path('Workout.csv').to.array(function (data) {
          data[index][3], data[index][4], data[index][5], data[index][6], data[index][7],
           data[index][8], data[index][9], data[index][10], data[index][11], data[index][12],
            data[index][13], data[index][14], data[index][15], data[index][16], data[index][17],
-           data[index][18], data[index][19], data[index][20], data[index][21]))
+           data[index][18], data[index][19], data[index][20], data[index][21], data[index][22], data[index][23]))
     }
     console.log(MyData); //display the data in the console
     //console.log(newList1);
@@ -58,6 +64,34 @@ function process_request(req, res){
 
   if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/97790d1d-312f-4c72-8ef1-d71861981704"){
     output_string = "testing the backend";
+  } else if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/afdd2389-1dd0-4b95-9feb-d031e59e1912"){
+    console.log("in the start intent")
+    selectedName[0] = MyData[1]["name"]
+    selectedWorkout[0] = MyData[1]["workout1"]
+    selectedWorkout[1] = MyData[1]["workout2"]
+    selectedWorkout[2] = MyData[1]["workout3"]
+    selectedWorkout[3] = MyData[1]["workout4"]
+    selectedWorkout[4] = MyData[1]["workout5"]
+    selectedWorkout[5] = MyData[1]["workout6"]
+    selectedWorkout[6] = MyData[1]["workout7"]
+    selectedTimer[0] = MyData[1]["timer1"]
+    selectedTimer[1] = MyData[1]["timer2"]
+    selectedTimer[2] = MyData[1]["timer3"]
+    selectedTimer[3] = MyData[1]["timer4"]
+    selectedTimer[4] = MyData[1]["timer5"]
+    selectedTimer[5] = MyData[1]["timer6"]
+    selectedTimer[6] = MyData[1]["timer7"]
+    selectedRec [0] = MyData[1]["rec1"]
+    selectedRec [1] = MyData[1]["rec2"]
+    selectedRec [2] = MyData[1]["rec3"]
+    selectedRec [3] = MyData[1]["rec4"]
+    selectedRec [4] = MyData[1]["rec5"]
+    selectedRec [5] = MyData[1]["rec6"]
+    selectedRec [6] = MyData[1]["rec7"]
+    console.log(selectedWorkout)
+    console.log(selectedTimer)
+    console.log(selectedRec)
+    output_string = "Starting " + selectedName[0] + ". First exercise is " + selectedWorkout[0];
   } else {
     output_string = "oh no!";
   }
