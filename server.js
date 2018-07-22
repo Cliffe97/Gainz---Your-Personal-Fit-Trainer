@@ -108,12 +108,18 @@ function process_request(req, res){
     tempCount = workoutCount[0];
     workoutCount[0] = tempCount + 1;
     //need to add another if statement to check if there is a new exercise or not
-    if ( selectedTimer[workoutCount[0]] == "0"){
-      //first exercise is rep exercise
-      output_string = "Next exercise is " + selectedWorkout[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
+    //this if statement should check if the next workout is real or not and if it is real then it executes
+    if (selectedWorkout[workoutCount[0]] != ""){
+      if ( selectedTimer[workoutCount[0]] == "0"){
+        //first exercise is rep exercise
+        output_string = "Next exercise is " + selectedWorkout[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
+      } else {
+        //first exercise is interval exercise
+        output_string = "Next exercise is " + selectedWorkout[workoutCount[0]] + " for " + selectedTimer[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
+      }
     } else {
-      //first exercise is interval exercise
-      output_string = "Next exercise is " + selectedWorkout[workoutCount[0]] + " for " + selectedTimer[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
+      //write a function to clear the current running workout like clear selectedWorkout[] + others
+      output_string = "You have completed all the workouts";
     }
   } else {
     output_string = "oh no!";
