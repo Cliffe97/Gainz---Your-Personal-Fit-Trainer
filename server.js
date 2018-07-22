@@ -42,6 +42,7 @@ var selectedWorkout = [];
 var selectedTimer = [];
 var selectedRec = [];
 var workoutCount = [];
+var runningWorkout = []
 
 obj.from.path('Workout.csv').to.array(function (data) {
     for (var index = 0; index < data.length; index++) {
@@ -58,6 +59,13 @@ obj.from.path('Workout.csv').to.array(function (data) {
     //console.log(constrains)
 });
 
+function terminate(){
+  selectedName = [];
+  selectedWorkout = [];
+  selectedTimer = [];
+  selectedRec = [];
+}
+
 function process_request(req, res){
   var output_string = "there was an error";
   var temp = "";
@@ -65,10 +73,14 @@ function process_request(req, res){
 
   if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/97790d1d-312f-4c72-8ef1-d71861981704"){
     output_string = "testing the backend";
+    
   //This is the start workout intent
   } else if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/afdd2389-1dd0-4b95-9feb-d031e59e1912"){
     console.log("in the start intent")
+    //setting workoutCount resets the counter for the remainder of the workout
     workoutCount[0] = 0;
+    runningWorkout[0] = 1; //1 meaning true there is a workout running and 0 meaning no workout running
+
     //the next 22 lines are just to fill in a sample results array
     selectedName[0] = MyData[1]["name"]
     selectedWorkout[0] = MyData[1]["workout1"]
@@ -102,25 +114,53 @@ function process_request(req, res){
       //first exercise is interval exercise
       output_string = "Starting " + selectedName[0] + ". First exercise is " + selectedWorkout[0] + " for " + selectedTimer[0] + ". Your target goal is " + selectedRec[0] + ".";
     }
+
   //This is the next exercise intent
-} else if(req.body.queryResult.intent.name == "insert the project url here") {
+  } else if(req.body.queryResult.intent.name == "insert the project url here") {
     var tempCount = 0;
     tempCount = workoutCount[0];
     workoutCount[0] = tempCount + 1;
     //need to add another if statement to check if there is a new exercise or not
     //this if statement should check if the next workout is real or not and if it is real then it executes
     if (selectedWorkout[workoutCount[0]] != ""){
+      //rep vs interval if statement
       if ( selectedTimer[workoutCount[0]] == "0"){
-        //first exercise is rep exercise
+        //exercise is rep exercise
         output_string = "Next exercise is " + selectedWorkout[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
       } else {
-        //first exercise is interval exercise
+        //exercise is interval exercise
         output_string = "Next exercise is " + selectedWorkout[workoutCount[0]] + " for " + selectedTimer[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
       }
     } else {
       //write a function to clear the current running workout like clear selectedWorkout[] + others
-      output_string = "You have completed all the workouts";
+      //Add a statement which checks if the user is running a workout or not/ for example so if they terminate they can go back and say next, it would say no running workout.
+      terminate();
+      if (runningWorkout[0] == 1){
+        output_string = "You have completed all the workouts";
+      } else {
+        output_string = "You are not running a workout currently";
+      }
     }
+
+  //This will be the terminating intent
+  } else if (req.body.queryResult.intent.name == "insert the project url here") {
+    terminate();
+    output_string = "Terminating Workout. Nice job!";
+
+  //This will be the pause intent
+  } else if (req.body.queryResult.intent.name == "insert the project url here") {
+    output_string = "Pausing Workout";
+
+  //This will be the resume intent
+  } else if (req.body.queryResult.intent.name == "insert the project url here") {
+    if ( selectedTimer[workoutCount[0]] == "0"){
+      //exercise is rep exercise
+      output_string = "Resuming workout. Current Exercise is " + selectedWorkout[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
+    } else {
+      //exercise is interval exercise
+      output_string = "Resuming workout. Current Exercise is " + selectedWorkout[workoutCount[0]] + " for " + selectedTimer[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
+    }
+
   } else {
     output_string = "oh no!";
   }
