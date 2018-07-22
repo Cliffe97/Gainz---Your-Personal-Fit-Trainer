@@ -41,6 +41,7 @@ var selectedName = [];
 var selectedWorkout = [];
 var selectedTimer = [];
 var selectedRec = [];
+var workoutCount = [];
 
 obj.from.path('Workout.csv').to.array(function (data) {
     for (var index = 0; index < data.length; index++) {
@@ -64,8 +65,11 @@ function process_request(req, res){
 
   if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/97790d1d-312f-4c72-8ef1-d71861981704"){
     output_string = "testing the backend";
+  //This is the start workout intent
   } else if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/afdd2389-1dd0-4b95-9feb-d031e59e1912"){
     console.log("in the start intent")
+    workoutCount[0] = 0;
+    //the next 22 lines are just to fill in a sample results array
     selectedName[0] = MyData[1]["name"]
     selectedWorkout[0] = MyData[1]["workout1"]
     selectedWorkout[1] = MyData[1]["workout2"]
@@ -92,12 +96,25 @@ function process_request(req, res){
     console.log(selectedTimer)
     console.log(selectedRec)
     if ( selectedTimer[0] == "0"){
-      console.log("COMPAR")
+      //first exercise is rep exercise
+      output_string = "Starting " + selectedName[0] + ". First exercise is " + selectedWorkout[0] + ". Your target goal is " + selectedRec[0] + ".";
     } else {
-      console.log("Stringggggg")
-
+      //first exercise is interval exercise
+      output_string = "Starting " + selectedName[0] + ". First exercise is " + selectedWorkout[0] + " for " + selectedTimer[0] + ". Your target goal is " + selectedRec[0] + ".";
     }
-    output_string = "Starting " + selectedName[0] + ". First exercise is " + selectedWorkout[0];
+  //This is the next exercise intent
+} else if(req.body.queryResult.intent.name == "insert the project url here") {
+    var tempCount = 0;
+    tempCount = workoutCount[0];
+    workoutCount[0] = tempCount + 1;
+    //need to add another if statement to check if there is a new exercise or not
+    if ( selectedTimer[workoutCount[0]] == "0"){
+      //first exercise is rep exercise
+      output_string = "Next exercise is " + selectedWorkout[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
+    } else {
+      //first exercise is interval exercise
+      output_string = "Next exercise is " + selectedWorkout[workoutCount[0]] + " for " + selectedTimer[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
+    }
   } else {
     output_string = "oh no!";
   }
