@@ -243,6 +243,11 @@ function process_request(req, res, next){
     res.locals.output_string = "oh no!";
   }
 
+  next()
+};
+
+
+function replyToDiaf(req, res, next){
   return res.json({
       "fulfillmentMessages": [],
       "fulfillmentText": res.locals.output_string,
@@ -251,11 +256,8 @@ function process_request(req, res, next){
       "source": "Text Source",
       "followupEventInput":{}
     });
-};
+}
 
-app.post('/hook', function(req, res){
-  //  console.log(req)
-  console.dir(req);
-  console.log(JSON.stringify(req.body, null, 2));
-    process_request(req, res)
-})
+
+
+app.post('/hook', process_request, replyToDiaf);
