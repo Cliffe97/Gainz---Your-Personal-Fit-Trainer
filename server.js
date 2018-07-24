@@ -128,12 +128,14 @@ function process_request(req, res, next){
     var category = req.body.queryResult.parameters["BodyFocus"];
     var result = get_count(category);
     res.locals.output_string = "There are"+result;
+    next();
   }else if(req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/60133197-d766-41f3-ba9c-53c6ffbf9123"){
     var arrayIndex = req.body.queryResult.parameters["number-integer"];
     var workoutName = name[arrayIndex-1];
     console.log(workoutName)
     console.log(name[arrayIndex])
     res.locals.output_string = "This is "+workoutName+".";
+    next();
   }else if(req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/52ad23d1-a4d8-49d1-9c83-54e66ca6bdd4"){
     console.log(arrayIndex)
     selectedName[0] = name[arrayIndex]
@@ -161,6 +163,7 @@ function process_request(req, res, next){
     selectedRec [4] = recArray[arrayIndex-1][0]
     selectedRec [5] = recArray[arrayIndex-1][0]
     selectedRec [6] = recArray[arrayIndex-1][0]
+    next();
   }else if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/afdd2389-1dd0-4b95-9feb-d031e59e1912"){
     console.log("in the start intent")
     //setting workoutCount resets the counter for the remainder of the workout
@@ -178,6 +181,7 @@ function process_request(req, res, next){
       //first exercise is interval exercise
       res.locals.output_string = "Starting " + selectedName[0] + ". First exercise is " + selectedWorkout[0] + " for " + selectedTimer[0] + ". Your target goal is " + selectedRec[0] + ".";
     }
+    next();
 
   //This is the next exercise intent
   } else if(req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/64a22f46-bdee-4a1b-a8df-3956bdf6c158") {
@@ -206,6 +210,7 @@ function process_request(req, res, next){
         res.locals.output_string = "You are not running a workout currently";
       }
     }
+    next();
 
   //This will be the terminating intent
   } else if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/f36dbef4-b860-40dc-bcd0-2b85d1f54b51") {
@@ -216,6 +221,7 @@ function process_request(req, res, next){
     } else {
       res.locals.output_string = "You are not running a workout currently";
     }
+    next();
 
   //This will be the pause intent
   } else if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/6936c56b-8b8a-4bd6-9bf9-ddad6b927578") {
@@ -224,6 +230,7 @@ function process_request(req, res, next){
     } else {
       res.locals.output_string = "You are not running a workout currently";
     }
+    next();
 
   //This will be the resume intent
   } else if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/0b02bbd9-f02c-45ad-8742-306a6ba8c72e") {
@@ -239,11 +246,11 @@ function process_request(req, res, next){
       res.locals.output_string = "You are not running a workout currently";
     }
 
+    next();
   } else {
     res.locals.output_string = "oh no!";
+    next();
   }
-
-  next()
 };
 
 
