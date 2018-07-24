@@ -2,12 +2,12 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var util = require("util")
 var csv = require("csv")
-var service = express();
+var app = express();
 var obj = csv();
 
-service.use(bodyParser.json());
+app.use(bodyParser.json());
 
-var server = service.listen(8081, function(){
+var server = app.listen(8081, function(){
 console.log('API server listening...')
 })
 function MyCSV(NAME,CATEGORY,WORKOUT1, TIMER1, REC1,	WORKOUT2,	TIMER2, REC2, WORKOUT3,	TIMER3,	REC3,	WORKOUT4, TIMER4,	REC4,	WORKOUT5,	TIMER5,	REC5, WORKOUT6, TIMER6, REC6, WORKOUT7, TIMER7, REC7){
@@ -37,12 +37,18 @@ function MyCSV(NAME,CATEGORY,WORKOUT1, TIMER1, REC1,	WORKOUT2,	TIMER2, REC2, WOR
 }
 
 var MyData = [];
+var name = [];
+var focus = [];
+var workoutArray=[];
+var timerArray=[];
+var recArray=[];
 var selectedName = [];
 var selectedWorkout = [];
 var selectedTimer = [];
 var selectedRec = [];
 var workoutCount = [];
-var runningWorkout = []
+var runningWorkout = [];
+//var arrayIndex;
 
 obj.from.path('Workout.csv').to.array(function (data) {
     for (var index = 0; index < data.length; index++) {
@@ -58,37 +64,49 @@ obj.from.path('Workout.csv').to.array(function (data) {
     //console.log(newList3);
     //console.log(constrains)
 });
+function updateArray(){
+  for(i=0;i<100;i++){
+    workoutArray[i] = [];
+    timerArray[i]= [];
+    recArray[i]= [];
+  }
+}
 
 function get_count(category){
   count = 0;
   var workout_category;
   console.log("category: "+ category);
-  console.log(MyData.length);
-  for(var index = 0; index < MyData.length; index ++){
-    if(category = MyData[index]["category"]){
-      console.log((count+1)+"result found");
-      selectedName[0] = MyData[index]["name"]
-      selectedWorkout[0] = MyData[index]["workout1"]
-      selectedWorkout[1] = MyData[index]["workout2"]
-      selectedWorkout[2] = MyData[index]["workout3"]
-      selectedWorkout[3] = MyData[index]["workout4"]
-      selectedWorkout[4] = MyData[index]["workout5"]
-      selectedWorkout[5] = MyData[index]["workout6"]
-      selectedWorkout[6] = MyData[index]["workout7"]
-      selectedTimer[0] = MyData[index]["timer1"]
-      selectedTimer[1] = MyData[index]["timer2"]
-      selectedTimer[2] = MyData[index]["timer3"]
-      selectedTimer[3] = MyData[index]["timer4"]
-      selectedTimer[4] = MyData[index]["timer5"]
-      selectedTimer[5] = MyData[index]["timer6"]
-      selectedTimer[6] = MyData[index]["timer7"]
-      selectedRec [0] = MyData[index]["rec1"]
-      selectedRec [1] = MyData[index]["rec2"]
-      selectedRec [2] = MyData[index]["rec3"]
-      selectedRec [3] = MyData[index]["rec4"]
-      selectedRec [4] = MyData[index]["rec5"]
-      selectedRec [5] = MyData[index]["rec6"]
-      selectedRec [6] = MyData[index]["rec7"]
+  console.log("Mydata.length: "+ MyData.length);
+  updateArray();
+  for(var index = 1; index < MyData.length; index ++){
+    console.log(MyData[index]["category"])
+    console.log("comparing the statement")
+    console.log(category)
+    if(category == MyData[index]["category"]){
+      console.log((count+1)+" result found");
+      name[count]=MyData[index]["name"];
+      focus[count]=MyData[index]["category"];
+      workoutArray[count][0] = MyData[index]["workout1"]
+      workoutArray[count][1] = MyData[index]["workout2"]
+      workoutArray[count][2] = MyData[index]["workout3"]
+      workoutArray[count][3] = MyData[index]["workout4"]
+      workoutArray[count][4] = MyData[index]["workout5"]
+      workoutArray[count][5] = MyData[index]["workout6"]
+      workoutArray[count][6] = MyData[index]["workout7"]
+      timerArray[count][0] = MyData[index]["timer1"]
+      timerArray[count][1] = MyData[index]["timer2"]
+      timerArray[count][2] = MyData[index]["timer3"]
+      timerArray[count][3] = MyData[index]["timer4"]
+      timerArray[count][4] = MyData[index]["timer5"]
+      timerArray[count][5] = MyData[index]["timer6"]
+      timerArray[count][6] = MyData[index]["timer7"]
+      recArray[count][0] = MyData[index]["rec1"]
+      recArray[count][1] = MyData[index]["rec2"]
+      recArray[count][2] = MyData[index]["rec3"]
+      recArray[count][3] = MyData[index]["rec4"]
+      recArray[count][4] = MyData[index]["rec5"]
+      recArray[count][5] = MyData[index]["rec6"]
+      recArray[count][6] = MyData[index]["rec7"]
       count ++;
     }
   }
@@ -100,7 +118,7 @@ function terminate(){
   selectedTimer = [];
   selectedRec = [];
 }
-function process_request(req, res){
+function process_request(req, res, next){
   var output_string = "there was an error";
   var temp = "";
   console.log("in the processing")
@@ -110,35 +128,46 @@ function process_request(req, res){
     var category = req.body.queryResult.parameters["BodyFocus"];
     var result = get_count(category);
     output_string = "There are"+result;
-  } else if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/afdd2389-1dd0-4b95-9feb-d031e59e1912"){
+  }else if(req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/60133197-d766-41f3-ba9c-53c6ffbf9123"){
+    var arrayIndex = req.body.queryResult.parameters["number-integer"];
+    var workoutName = name[arrayIndex-1];
+    console.log(workoutName)
+    console.log(name[arrayIndex])
+    output_string = "This is "+workoutName+".";
+  }else if(req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/52ad23d1-a4d8-49d1-9c83-54e66ca6bdd4"){
+    console.log(arrayIndex)
+    selectedName[0] = name[arrayIndex]
+    console.log(selectedName[0])
+    console.log(name[arrayIndex])
+    selectedName[0] = name[arrayIndex-1]
+    selectedWorkout[0] = workoutArray[arrayIndex-1][0]
+    selectedWorkout[1] = workoutArray[arrayIndex-1][1]
+    selectedWorkout[2] = workoutArray[arrayIndex-1][2]
+    selectedWorkout[3] = workoutArray[arrayIndex-1][3]
+    selectedWorkout[4] = workoutArray[arrayIndex-1][4]
+    selectedWorkout[5] = workoutArray[arrayIndex-1][5]
+    selectedWorkout[6] = workoutArray[arrayIndex-1][0]
+    selectedTimer[0] = timerArray[arrayIndex-1][0]
+    selectedTimer[1] = timerArray[arrayIndex-1][1]
+    selectedTimer[2] = timerArray[arrayIndex-1][2]
+    selectedTimer[3] = timerArray[arrayIndex-1][3]
+    selectedTimer[4] = timerArray[arrayIndex-1][4]
+    selectedTimer[5] = timerArray[arrayIndex-1][5]
+    selectedTimer[6] = timerArray[arrayIndex-1][6]
+    selectedRec [0] = recArray[arrayIndex-1][0]
+    selectedRec [1] = recArray[arrayIndex-1][0]
+    selectedRec [2] = recArray[arrayIndex-1][0]
+    selectedRec [3] = recArray[arrayIndex-1][0]
+    selectedRec [4] = recArray[arrayIndex-1][0]
+    selectedRec [5] = recArray[arrayIndex-1][0]
+    selectedRec [6] = recArray[arrayIndex-1][0]
+  }else if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/afdd2389-1dd0-4b95-9feb-d031e59e1912"){
     console.log("in the start intent")
     //setting workoutCount resets the counter for the remainder of the workout
     workoutCount[0] = 0;
     runningWorkout[0] = 1; //1 meaning true there is a workout running and 0 meaning no workout running
 
     //the next 22 lines are just to fill in a sample results array
-    selectedName[0] = MyData[1]["name"]
-    selectedWorkout[0] = MyData[1]["workout1"]
-    selectedWorkout[1] = MyData[1]["workout2"]
-    selectedWorkout[2] = MyData[1]["workout3"]
-    selectedWorkout[3] = MyData[1]["workout4"]
-    selectedWorkout[4] = MyData[1]["workout5"]
-    selectedWorkout[5] = MyData[1]["workout6"]
-    selectedWorkout[6] = MyData[1]["workout7"]
-    selectedTimer[0] = MyData[1]["timer1"]
-    selectedTimer[1] = MyData[1]["timer2"]
-    selectedTimer[2] = MyData[1]["timer3"]
-    selectedTimer[3] = MyData[1]["timer4"]
-    selectedTimer[4] = MyData[1]["timer5"]
-    selectedTimer[5] = MyData[1]["timer6"]
-    selectedTimer[6] = MyData[1]["timer7"]
-    selectedRec [0] = MyData[1]["rec1"]
-    selectedRec [1] = MyData[1]["rec2"]
-    selectedRec [2] = MyData[1]["rec3"]
-    selectedRec [3] = MyData[1]["rec4"]
-    selectedRec [4] = MyData[1]["rec5"]
-    selectedRec [5] = MyData[1]["rec6"]
-    selectedRec [6] = MyData[1]["rec7"]
     console.log(selectedWorkout)
     console.log(selectedTimer)
     console.log(selectedRec)
@@ -224,8 +253,9 @@ function process_request(req, res){
     });
 };
 
-service.post('/hook', function(req, res){
+app.post('/hook', function(req, res){
   //  console.log(req)
-  //  console.log(JSON.stringify(req.body, null, 2));
+  console.dir(req);
+  console.log(JSON.stringify(req.body, null, 2));
     process_request(req, res)
 })
