@@ -20,6 +20,8 @@ const setController = require('./controllers/setController');
 const aboutController = require('./controllers/aboutController')
 const preMadeController = require('./controllers/preMadeController')
 
+const workoutController = require('./controllers/workoutController');
+const exerciseController = require('./controllers/exerciseController');
 
 //authentication with passport
 const session = require("express-session")
@@ -112,6 +114,8 @@ app.post('/saveWorkout', filterController.saveWorkout)
 app.post('/deleteWorkout', filterController.deleteWorkout)
 app.post('/selectWorkout', filterController.selectWorkout)
 
+app.post('/saveWorkout2', workoutController.saveWorkout2)
+app.post('/saveExercise', exerciseController.saveExercise)
 
 //route middleware to make sure a user is logged inspect
 function isLoggedIn(req,res,next){
