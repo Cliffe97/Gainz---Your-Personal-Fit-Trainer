@@ -1,7 +1,7 @@
 'use strict'
-const PremadeWorkout = require( '../models/PremadeWorkout' );
+const Workout = require( '../models/Workout' );
 const user = require('../models/user');
-console.log("loading the filter Controller")
+console.log("loading the workout Controller")
 
 // exports.renderMain =  (req,res) => {
 //   //console.log("in the swController.renderMain")
@@ -27,19 +27,19 @@ exports.getAllWorkouts = ( req, res ) => {
     } );
 };
 
-exports.saveWorkoutTo = ( req, res ) => {
-  console.log("in saveWorkout!")
+exports.saveWorkout2 = ( req, res ) => {
+  console.log("in saveWorkout2!")
   //console.dir(req)
-  let newWorkout = new PremadeWorkout( {
+  let newWorkout2 = new Workout( {
     name: req.body.name,
     category:req.body.category,
   } )
 
   //console.log("posts = "newPost)
 
-  newWorkout.save()
+  newWorkout2.save()
     .then( () => {
-      res.redirect( '/createIntervalWorkout' );
+      res.redirect( '/exerciseForm' );
     } )
     .catch( error => {
       res.send( error );
