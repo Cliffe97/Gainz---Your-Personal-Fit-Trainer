@@ -36,7 +36,8 @@ exports.saveWorkout2 = ( req, res ) => {
   //console.dir(req)
   let newWorkout2 = new Workout( {
     name: req.body.name,
-    category:req.body.category,
+    email: req.body.email,
+    category: req.body.category
   } )
 
   //console.log("posts = "newPost)
