@@ -8,6 +8,10 @@ console.log("loading the Exercise Controller")
 //   res.render('repWorkout')
 // }
 
+exports.renderExerciseForm = ( req, res ) => {
+  res.render( 'exerciseForm');
+};
+
 exports.getAllWorkouts = ( req, res ) => {
   console.log('in getAllWorkouts')
   PremadeWorkout.find( {} )

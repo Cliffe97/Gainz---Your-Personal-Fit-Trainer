@@ -114,6 +114,9 @@ app.post('/saveWorkout', filterController.saveWorkout)
 app.post('/deleteWorkout', filterController.deleteWorkout)
 app.post('/selectWorkout', filterController.selectWorkout)
 
+
+app.get('/workoutForm',  workoutController.renderWorkoutForm)
+app.get('/exerciseForm',  exerciseController.renderExerciseForm)
 app.post('/saveWorkout2', workoutController.saveWorkout2)
 app.post('/saveExercise', exerciseController.saveExercise)
 

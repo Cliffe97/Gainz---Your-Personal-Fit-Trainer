@@ -8,6 +8,10 @@ console.log("loading the workout Controller")
 //   res.render('repWorkout')
 // }
 
+exports.renderWorkoutForm = ( req, res ) => {
+  res.render( 'workoutForm');
+};
+
 exports.getAllWorkouts = ( req, res ) => {
   console.log('in getAllWorkouts')
   PremadeWorkout.find( {} )
@@ -39,7 +43,7 @@ exports.saveWorkout2 = ( req, res ) => {
 
   newWorkout2.save()
     .then( () => {
-      res.redirect( '/exerciseForm' );
+      res.redirect( '/workoutForm' );
     } )
     .catch( error => {
       res.send( error );
