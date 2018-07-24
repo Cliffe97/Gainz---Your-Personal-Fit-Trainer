@@ -31,10 +31,10 @@ exports.saveExercise = ( req, res ) => {
   console.log("in saveExercise!")
   //console.dir(req)
   let newExercise = new Exercise( {
-   exerciseName = req.body.exerciseName;
-   timer = req.body.timer;
-   rec = req.body.rec;
-   order = req.body.order;
+   exerciseName = req.body.exerciseName,
+   timer = req.body.timer,
+   rec = req.body.rec,
+   order = req.body.order
   } )
 
   //console.log("posts = "newPost)
