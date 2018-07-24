@@ -12,9 +12,9 @@ block content
     form(method="post" action="saveWorkout2")
       ol
         td
-          input(type='text', name='Name',placeholder='Workout Name')
-          input(type='text', name='Email', readonly="true," value=user.googleemail)
-          select(type='text', name='Category')
+          input(type='text', name='name',placeholder='Workout Name')
+          input(type='text', name='email', readonly="true," value=user.googleemail)
+          select(type='text', name='category')
             option(value='Total') Total Body
             option(value='Upper') Upper
             option(value='Lower') Lower
