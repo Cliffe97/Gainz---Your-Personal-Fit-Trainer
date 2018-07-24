@@ -119,7 +119,7 @@ function terminate(){
   selectedRec = [];
 }
 function process_request(req, res, next){
-  var output_string = "there was an error";
+  res.locals.output_string = "there was an error";
   var temp = "";
   console.log("in the processing")
 
@@ -127,13 +127,13 @@ function process_request(req, res, next){
     console.log("how many triggered");
     var category = req.body.queryResult.parameters["BodyFocus"];
     var result = get_count(category);
-    output_string = "There are"+result;
+    res.locals.output_string = "There are"+result;
   }else if(req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/60133197-d766-41f3-ba9c-53c6ffbf9123"){
     var arrayIndex = req.body.queryResult.parameters["number-integer"];
     var workoutName = name[arrayIndex-1];
     console.log(workoutName)
     console.log(name[arrayIndex])
-    output_string = "This is "+workoutName+".";
+    res.locals.output_string = "This is "+workoutName+".";
   }else if(req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/52ad23d1-a4d8-49d1-9c83-54e66ca6bdd4"){
     console.log(arrayIndex)
     selectedName[0] = name[arrayIndex]
@@ -173,10 +173,10 @@ function process_request(req, res, next){
     console.log(selectedRec)
     if ( selectedTimer[0] == "0"){
       //first exercise is rep exercise
-      output_string = "Starting " + selectedName[0] + ". First exercise is " + selectedWorkout[0] + ". Your target goal is " + selectedRec[0] + ".";
+      res.locals.output_string = "Starting " + selectedName[0] + ". First exercise is " + selectedWorkout[0] + ". Your target goal is " + selectedRec[0] + ".";
     } else {
       //first exercise is interval exercise
-      output_string = "Starting " + selectedName[0] + ". First exercise is " + selectedWorkout[0] + " for " + selectedTimer[0] + ". Your target goal is " + selectedRec[0] + ".";
+      res.locals.output_string = "Starting " + selectedName[0] + ". First exercise is " + selectedWorkout[0] + " for " + selectedTimer[0] + ". Your target goal is " + selectedRec[0] + ".";
     }
 
   //This is the next exercise intent
@@ -190,20 +190,20 @@ function process_request(req, res, next){
       //rep vs interval if statement
       if ( selectedTimer[workoutCount[0]] == "0"){
         //exercise is rep exercise
-        output_string = "Next exercise is " + selectedWorkout[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
+        res.locals.output_string = "Next exercise is " + selectedWorkout[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
       } else {
         //exercise is interval exercise
-        output_string = "Next exercise is " + selectedWorkout[workoutCount[0]] + " for " + selectedTimer[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
+        res.locals.output_string = "Next exercise is " + selectedWorkout[workoutCount[0]] + " for " + selectedTimer[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
       }
     } else {
       //write a function to clear the current running workout like clear selectedWorkout[] + others
       //Add a statement which checks if the user is running a workout or not/ for example so if they terminate they can go back and say next, it would say no running workout.
       terminate();
       if (runningWorkout[0] == 1){
-        output_string = "You have completed all the workouts. Nice job!";
+        res.locals.output_string = "You have completed all the workouts. Nice job!";
         runningWorkout[0] = 0;
       } else {
-        output_string = "You are not running a workout currently";
+        res.locals.output_string = "You are not running a workout currently";
       }
     }
 
@@ -211,18 +211,18 @@ function process_request(req, res, next){
   } else if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/f36dbef4-b860-40dc-bcd0-2b85d1f54b51") {
     if (runningWorkout[0] == 1){
       terminate();
-      output_string = "Terminating Workout. Nice job!";
+      res.locals.output_string = "Terminating Workout. Nice job!";
       runningWorkout[0] = 0;
     } else {
-      output_string = "You are not running a workout currently";
+      res.locals.output_string = "You are not running a workout currently";
     }
 
   //This will be the pause intent
   } else if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/6936c56b-8b8a-4bd6-9bf9-ddad6b927578") {
     if (runningWorkout[0] == 1){
-      output_string = "Pausing Workout";
+      res.locals.output_string = "Pausing Workout";
     } else {
-      output_string = "You are not running a workout currently";
+      res.locals.output_string = "You are not running a workout currently";
     }
 
   //This will be the resume intent
@@ -230,23 +230,23 @@ function process_request(req, res, next){
     if (runningWorkout[0] == 1){
       if ( selectedTimer[workoutCount[0]] == "0"){
         //exercise is rep exercise
-        output_string = "Resuming workout. Current Exercise is " + selectedWorkout[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
+        res.locals.output_string = "Resuming workout. Current Exercise is " + selectedWorkout[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
       } else {
         //exercise is interval exercise
-        output_string = "Resuming workout. Current Exercise is " + selectedWorkout[workoutCount[0]] + " for " + selectedTimer[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
+        res.locals.output_string = "Resuming workout. Current Exercise is " + selectedWorkout[workoutCount[0]] + " for " + selectedTimer[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
       }
     } else {
-      output_string = "You are not running a workout currently";
+      res.locals.output_string = "You are not running a workout currently";
     }
 
   } else {
-    output_string = "oh no!";
+    res.locals.output_string = "oh no!";
   }
 
   return res.json({
       "fulfillmentMessages": [],
-      "fulfillmentText": output_string,
-      "payload":{"slack":{"text":output_string}},
+      "fulfillmentText": res.locals.output_string,
+      "payload":{"slack":{"text":res.locals.output_string}},
       "outputContexts": [],
       "source": "Text Source",
       "followupEventInput":{}
