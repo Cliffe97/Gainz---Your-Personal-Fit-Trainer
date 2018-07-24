@@ -27,34 +27,12 @@ exports.getAllWorkouts = ( req, res ) => {
     } );
 };
 
-exports.saveWorkout = ( req, res ) => {
+exports.saveWorkoutTo = ( req, res ) => {
   console.log("in saveWorkout!")
   //console.dir(req)
   let newWorkout = new PremadeWorkout( {
-    Name: req.body.Name,
-    Email: req.body.Email,
-    Category:req.body.Category,
-    Exercise1: req.body.Exercise1,
-    Timer1: req.body.Timer1,
-    Rec1: req.body.Rec1,
-    Exercise2: req.body.Exercise2,
-    Timer2: req.body.Timer2,
-    Rec2: req.body.Rec2,
-    Exercise3: req.body.Exercise3,
-    Timer3: req.body.Timer3,
-    Rec3: req.body.Rec3,
-    Exercise4: req.body.Exercise4,
-    Timer4: req.body.Timer4,
-    Rec4: req.body.Rec4,
-    Exercise5: req.body.Exercise5,
-    Timer5: req.body.Timer5,
-    Rec5: req.body.Rec5,
-    Exercise6: req.body.Exercise6,
-    Timer6: req.body.Timer6,
-    Rec6: req.body.Rec6,
-    Exercise7: req.body.Exercise7,
-    Timer7: req.body.Timer7,
-    Rec7: req.body.Rec7,
+    name: req.body.name,
+    category:req.body.category,
   } )
 
   //console.log("posts = "newPost)
