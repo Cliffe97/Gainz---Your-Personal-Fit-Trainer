@@ -4,6 +4,40 @@ var util = require("util")
 var csv = require("csv")
 var app = express();
 var obj = csv();
+const Workout = require( './models/Workout' );
+
+const mongoose = require( 'mongoose' );
+mongoose.connect( 'mongodb://localhost/gainz' );
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("we are connected!")
+});
+var arrayWorkout = [];
+
+
+function count_workouts(session, req, res, next){
+  Workout.find( {category:session.category} )
+    .exec()
+    .then( ( workouts ) => {
+      console.log("The workouts: "+ workouts.length);
+      arrayWorkout.push(workouts);
+      console.log(arrayWorkout[0][0]);
+      res.locals.output_string="There are "+ workouts.length;
+      next();
+    } )
+    .catch( ( error ) => {
+      console.log( error.message );
+      return [];
+    } )
+}
+
+  function get_one(index, res, req){
+    var name = arrayWorkout[0][index-1].name;
+    console.log(name);
+    return name;
+  }
+
 
 app.use(bodyParser.json());
 
@@ -122,20 +156,24 @@ function process_request(req, res, next){
   res.locals.output_string = "there was an error";
   var temp = "";
   console.log("in the processing")
-
-  if(req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/0c2900e5-d161-43b5-b96e-a7433219dc64"){
+  sessions[req.body.sessions]= sessions[req.body.sessions] || {};
+  if(req.body.queryResult.intent.displayName == "how_many"){
     console.log("how many triggered");
     var category = req.body.queryResult.parameters["BodyFocus"];
-    var result = get_count(category);
-    res.locals.output_string = "There are"+result;
-    next();
-  }else if(req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/60133197-d766-41f3-ba9c-53c6ffbf9123"){
+    sessions[req.body.sessions].category = category;
+    count_workouts(sessions[req.body.sessions],req,res, next);
+  }else if(req.body.queryResult.intent.displayName == "show_one"){
     var arrayIndex = req.body.queryResult.parameters["number-integer"];
-    var workoutName = name[arrayIndex-1];
-    console.log(workoutName)
-    console.log(name[arrayIndex])
-    res.locals.output_string = "This is "+workoutName+".";
-    next();
+    var resultName = get_one(arrayIndex, req, res);
+    // console.log("inside show_one")
+    // console.dir(sessions[req.body.sessions]);
+    // var workoutName = name[arrayIndex-1]
+    // console.log(workoutName)
+    // console.log(name[arrayIndex])
+    console.log("resultName is ")
+    console.log(resultName);
+     res.locals.output_string = resultName;
+     next();
   }else if(req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/52ad23d1-a4d8-49d1-9c83-54e66ca6bdd4"){
     console.log(arrayIndex)
     selectedName[0] = name[arrayIndex]
@@ -255,6 +293,7 @@ function process_request(req, res, next){
 
 
 function replyToDiaf(req, res, next){
+  console.dir(req.body)
   return res.json({
       "fulfillmentMessages": [],
       "fulfillmentText": res.locals.output_string,
@@ -263,8 +302,10 @@ function replyToDiaf(req, res, next){
       "source": "Text Source",
       "followupEventInput":{}
     });
+
 }
 
+let sessions = {}
 
 
 app.post('/hook', process_request, replyToDiaf);
