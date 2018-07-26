@@ -5,7 +5,7 @@ var exerciseSchema = mongoose.Schema( {
   exerciseName: String,
   timer: String,
   rec: String,
-  order: String
+  description: String
 } );
 
 

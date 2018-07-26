@@ -1,5 +1,6 @@
 'use strict'
 const Exercise = require( '../models/Exercise' );
+const WorkoutSequence = require( '../models/WorkoutSequence' );
 const user = require('../models/user');
 console.log("loading the Exercise Controller")
 
@@ -31,21 +32,21 @@ exports.getAllWorkouts = ( req, res ) => {
     } );
 };
 
-exports.saveExercise = ( req, res ) => {
-  console.log("in saveExercise!")
+exports.saveWorkoutSequence = ( req, res ) => {
+  console.log("in saveWorkoutSequence!")
   //console.dir(req)
-  let newExercise = new Exercise( {
+  let newWorkoutSequence = new WorkoutSequence( {
+   workoutName : req.body.workoutName,
    exerciseName : req.body.exerciseName,
-   timer : req.body.timer,
-   rec : req.body.rec,
-   description : req.body.description
+   order : req.body.order
   } )
 
-  //console.log("posts = "newPost)
+  console.log("newWorkoutSequence = "+ newWorkoutSequence)
 
-  newExercise.save()
+  newWorkoutSequence.save()
     .then( () => {
-      res.redirect( '/exerciseForm' );
+
+      res.redirect( '/workoutSequence' );
     } )
     .catch( error => {
       res.send( error );

@@ -92,3 +92,20 @@ exports.deleteWorkout = (req, res) => {
               } );
 
  }
+
+ exports.attachWorkout = ( req, res, next ) => {
+  console.log('in attachWorkout')
+  Workout.find( {} )
+    .exec()
+    .then( ( workouts ) => {
+      res.locals.workouts = workouts
+      next()
+    } )
+    .catch( ( error ) => {
+      console.log( error.message );
+      return [];
+    } )
+    .then( () => {
+      console.log( 'workout promise complete' );
+    } );
+ };

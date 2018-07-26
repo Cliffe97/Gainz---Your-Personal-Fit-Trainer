@@ -21,8 +21,8 @@ function count_workouts(session, req, res, next){
     .exec()
     .then( ( workouts ) => {
       console.log("The workouts: "+ workouts.length);
-      arrayWorkout.push(workouts);
-      console.log(arrayWorkout[0][0]);
+      // arrayWorkout.push(workouts);
+      // console.log(arrayWorkout[0][0]);
       res.locals.output_string="There are "+ workouts.length;
       next();
     } )
@@ -32,10 +32,25 @@ function count_workouts(session, req, res, next){
     } )
 }
 
-  function get_one(index, res, req){
-    var name = arrayWorkout[0][index-1].name;
-    console.log(name);
-    return name;
+  function get_one(sessionVar, index, req, res,next){
+    // var name = arrayWorkout[0][index-1].name;
+    // console.log(name);
+    // return name;
+    Workout.find( {category:sessionVar.category} )
+      .exec()
+      .then( ( workouts ) => {
+        //console.log("The workouts: "+ workouts.length);
+        // arrayWorkout.push(workouts);
+        // console.log(arrayWorkout[0][0]);
+        sessionVar.workout = workouts[index-1];
+        res.locals.output_string="The name is "+ workouts[index-1].name;
+        next();
+      } )
+      .catch( ( error ) => {
+        console.log( error.message );
+        return [];
+      } )
+
   }
 
 
@@ -106,74 +121,77 @@ function updateArray(){
   }
 }
 
-function get_count(category){
-  count = 0;
-  var workout_category;
-  console.log("category: "+ category);
-  console.log("Mydata.length: "+ MyData.length);
-  updateArray();
-  for(var index = 1; index < MyData.length; index ++){
-    console.log(MyData[index]["category"])
-    console.log("comparing the statement")
-    console.log(category)
-    if(category == MyData[index]["category"]){
-      console.log((count+1)+" result found");
-      name[count]=MyData[index]["name"];
-      focus[count]=MyData[index]["category"];
-      workoutArray[count][0] = MyData[index]["workout1"]
-      workoutArray[count][1] = MyData[index]["workout2"]
-      workoutArray[count][2] = MyData[index]["workout3"]
-      workoutArray[count][3] = MyData[index]["workout4"]
-      workoutArray[count][4] = MyData[index]["workout5"]
-      workoutArray[count][5] = MyData[index]["workout6"]
-      workoutArray[count][6] = MyData[index]["workout7"]
-      timerArray[count][0] = MyData[index]["timer1"]
-      timerArray[count][1] = MyData[index]["timer2"]
-      timerArray[count][2] = MyData[index]["timer3"]
-      timerArray[count][3] = MyData[index]["timer4"]
-      timerArray[count][4] = MyData[index]["timer5"]
-      timerArray[count][5] = MyData[index]["timer6"]
-      timerArray[count][6] = MyData[index]["timer7"]
-      recArray[count][0] = MyData[index]["rec1"]
-      recArray[count][1] = MyData[index]["rec2"]
-      recArray[count][2] = MyData[index]["rec3"]
-      recArray[count][3] = MyData[index]["rec4"]
-      recArray[count][4] = MyData[index]["rec5"]
-      recArray[count][5] = MyData[index]["rec6"]
-      recArray[count][6] = MyData[index]["rec7"]
-      count ++;
-    }
-  }
-  return count;
-}
+// function get_count(category){
+//   count = 0;
+//   var workout_category;
+//   console.log("category: "+ category);
+//   console.log("Mydata.length: "+ MyData.length);
+//   updateArray();
+//   for(var index = 1; index < MyData.length; index ++){
+//     console.log(MyData[index]["category"])
+//     console.log("comparing the statement")
+//     console.log(category)
+//     if(category == MyData[index]["category"]){
+//       console.log((count+1)+" result found");
+//       name[count]=MyData[index]["name"];
+//       focus[count]=MyData[index]["category"];
+//       workoutArray[count][0] = MyData[index]["workout1"]
+//       workoutArray[count][1] = MyData[index]["workout2"]
+//       workoutArray[count][2] = MyData[index]["workout3"]
+//       workoutArray[count][3] = MyData[index]["workout4"]
+//       workoutArray[count][4] = MyData[index]["workout5"]
+//       workoutArray[count][5] = MyData[index]["workout6"]
+//       workoutArray[count][6] = MyData[index]["workout7"]
+//       timerArray[count][0] = MyData[index]["timer1"]
+//       timerArray[count][1] = MyData[index]["timer2"]
+//       timerArray[count][2] = MyData[index]["timer3"]
+//       timerArray[count][3] = MyData[index]["timer4"]
+//       timerArray[count][4] = MyData[index]["timer5"]
+//       timerArray[count][5] = MyData[index]["timer6"]
+//       timerArray[count][6] = MyData[index]["timer7"]
+//       recArray[count][0] = MyData[index]["rec1"]
+//       recArray[count][1] = MyData[index]["rec2"]
+//       recArray[count][2] = MyData[index]["rec3"]
+//       recArray[count][3] = MyData[index]["rec4"]
+//       recArray[count][4] = MyData[index]["rec5"]
+//       recArray[count][5] = MyData[index]["rec6"]
+//       recArray[count][6] = MyData[index]["rec7"]
+//       count ++;
+//     }
+//   }
+//   return count;
+// }
 function terminate(){
   selectedName = [];
   selectedWorkout = [];
   selectedTimer = [];
   selectedRec = [];
 }
+let sessionVars=[];
 function process_request(req, res, next){
   res.locals.output_string = "there was an error";
   var temp = "";
   console.log("in the processing")
-  sessions[req.body.sessions]= sessions[req.body.sessions] || {};
+  sessionVars[req.body.sessions]= sessionVars[req.body.sessions] || {};
+  let sessionVar = sessionVars[req.body.sessions];
   if(req.body.queryResult.intent.displayName == "how_many"){
     console.log("how many triggered");
     var category = req.body.queryResult.parameters["BodyFocus"];
-    sessions[req.body.sessions].category = category;
-    count_workouts(sessions[req.body.sessions],req,res, next);
+    sessionVar.category = category;
+    count_workouts(sessionVar,req,res, next);
   }else if(req.body.queryResult.intent.displayName == "show_one"){
     var arrayIndex = req.body.queryResult.parameters["number-integer"];
-    var resultName = get_one(arrayIndex, req, res);
+
+    get_one(sessionVar, arrayIndex, req, res, next);
     // console.log("inside show_one")
     // console.dir(sessions[req.body.sessions]);
     // var workoutName = name[arrayIndex-1]
     // console.log(workoutName)
     // console.log(name[arrayIndex])
-    console.log("resultName is ")
-    console.log(resultName);
-     res.locals.output_string = resultName;
-     next();
+    // console.log("resultName is ")
+    // console.log(resultName);
+    //  res.locals.output_string = resultName;
+    //  next();
   }else if(req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/52ad23d1-a4d8-49d1-9c83-54e66ca6bdd4"){
     console.log(arrayIndex)
     selectedName[0] = name[arrayIndex]
@@ -202,7 +220,7 @@ function process_request(req, res, next){
     selectedRec [5] = recArray[arrayIndex-1][0]
     selectedRec [6] = recArray[arrayIndex-1][0]
     next();
-  }else if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/afdd2389-1dd0-4b95-9feb-d031e59e1912"){
+  }else if (req.body.queryResult.intent.displayName == "Workout - Start command"){
     console.log("in the start intent")
     //setting workoutCount resets the counter for the remainder of the workout
     workoutCount[0] = 0;
@@ -305,7 +323,7 @@ function replyToDiaf(req, res, next){
 
 }
 
-let sessions = {}
+
 
 
 app.post('/hook', process_request, replyToDiaf);
