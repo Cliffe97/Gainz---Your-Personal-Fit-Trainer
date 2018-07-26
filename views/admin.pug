@@ -3,20 +3,12 @@ extends layout
 block content
     body
 
-    .container
-      form(method="post" action="savePlan")
-        table
-          td
-            input(name='Name', placeholder='Workout Name')
-          td
-            input(name='Timer', placeholder='Set a Timer')
-          td
-            input(name="Rec", placeholder='Recommendation of Workout')
-          td
-            input(name="Category", placeholder='Category of Workout')
-          td
-            button(onclick='del(this)') X
-          tbody#customTable
-          br
-        button(type='submit') Submit
-      button(onclick='newrow()') Add a Workout
+    form(method="post" action= "/deleteWorkout")
+      ol
+        each w in workoutSequences
+          li
+            input(name="workoutName" value=w._id type="checkbox")
+            e #{w.workoutName} --
+            i #{w.exerciseName} --
+            e #{w.order}
+      input(type="submit" value="Delete checked items")

@@ -110,11 +110,11 @@ app.get('/login/authorized',
   }))
 
 app.get('/createIntervalWorkout',  filterController.getAllWorkouts)
-app.post('/saveWorkout', filterController.saveWorkout)
+//app.post('/saveWorkout', filterController.saveWorkout)
 //app.get('/preMade', setController.getAllPlans)
 //app.get('/c'ategory', filterController.getAllWorkouts)
-app.post('/deleteWorkout', filterController.deleteWorkout)
-app.post('/selectWorkout', filterController.selectWorkout)
+//app.post('/deleteWorkout', filterController.deleteWorkout)
+//app.post('/selectWorkout', filterController.selectWorkout)
 
 
 app.get('/workoutForm',  workoutController.renderWorkoutForm)
@@ -130,6 +130,9 @@ app.get('/workoutSequence',
   res.render('workoutSequence')
 } );
 app.post('/saveWorkoutSequence', workoutSequenceController.saveWorkoutSequence)
+//app.get('/admin', filterController.renderAdmin);
+app.get('/admin', filterController.getAllWorkouts);
+app.post('/deleteWorkout', filterController.deleteWorkout);
 
 
 //route middleware to make sure a user is logged inspect
