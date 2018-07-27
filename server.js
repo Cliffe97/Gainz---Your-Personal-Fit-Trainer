@@ -8,7 +8,8 @@ const WorkoutSequence = require( './models/WorkoutSequence' );
 
 
 const mongoose = require( 'mongoose' );
-mongoose.connect( 'mongodb://localhost/gainz' );
+//mongoose.connect( 'mongodb://localhost/gainz' );
+mongoose.connect( 'mongodb://gainz:Brandeis18@ds145121.mlab.com:45121/gainz-google' );
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
