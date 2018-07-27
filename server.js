@@ -5,6 +5,9 @@ var csv = require("csv")
 var app = express();
 var obj = csv();
 const Workout = require( './models/Workout' );
+const Exercise = require( './models/Exercise' );
+const WorkoutSequence = require( './models/WorkoutSequence' );
+
 
 const mongoose = require( 'mongoose' );
 mongoose.connect( 'mongodb://localhost/gainz' );
@@ -42,7 +45,8 @@ function count_workouts(session, req, res, next){
         //console.log("The workouts: "+ workouts.length);
         // arrayWorkout.push(workouts);
         // console.log(arrayWorkout[0][0]);
-        sessionVar.workout = workouts[index-1];
+        sessionVar.workout = workouts[index-1].name;
+        sessionVar.step = -1;
         res.locals.output_string="The name is "+ workouts[index-1].name;
         next();
       } )
@@ -51,6 +55,44 @@ function count_workouts(session, req, res, next){
         return [];
       } )
 
+  }
+
+  function doWorkout(sessionVar,req,res,next){
+    console.log("in start workout")
+    console.dir(sessionVar.workout)
+    sessionVar.step++
+    let exerciseName = "";
+    WorkoutSequence.find({workoutName:sessionVar.workout})
+      .exec()
+      .then((exercises)=>{
+        console.log("in WS.find")
+        console.dir(exercises)
+        if (sessionVar.step >= exercises.length){
+          res.locals.output_string = "You have completed all the exercises in " + sessionVar.workout;
+          sessionVar.step = -1;
+          next();
+        } else {
+          exerciseName = exercises[sessionVar.step].exerciseName
+          console.log(exerciseName)
+          Exercise.findOne({exerciseName: exerciseName})
+          .exec()
+          .then((exercise)=>{
+            res.locals.output_string = "Now do " + exercise.exerciseName + ". Target is " + exercise.rec + " for " + exercise.timer
+            sessionVar.exercise = exercise;
+            next();
+          })
+          .catch((error)=>{
+            console.log(error.message);
+            res.locals.output_string = "There was an error #295";
+            next();
+          })
+        }
+      })
+      .catch((error)=>{
+        console.log(error.message);
+        res.locals.output_string = "There was an error #2";
+        next();
+      })
   }
 
 
@@ -222,51 +264,16 @@ function process_request(req, res, next){
     next();
   }else if (req.body.queryResult.intent.displayName == "Workout - Start command"){
     console.log("in the start intent")
+    doWorkout(sessionVar,req,res,next);
     //setting workoutCount resets the counter for the remainder of the workout
-    workoutCount[0] = 0;
-    runningWorkout[0] = 1; //1 meaning true there is a workout running and 0 meaning no workout running
 
-    //the next 22 lines are just to fill in a sample results array
-    console.log(selectedWorkout)
-    console.log(selectedTimer)
-    console.log(selectedRec)
-    if ( selectedTimer[0] == "0"){
-      //first exercise is rep exercise
-      res.locals.output_string = "Starting " + selectedName[0] + ". First exercise is " + selectedWorkout[0] + ". Your target goal is " + selectedRec[0] + ".";
-    } else {
-      //first exercise is interval exercise
-      res.locals.output_string = "Starting " + selectedName[0] + ". First exercise is " + selectedWorkout[0] + " for " + selectedTimer[0] + ". Your target goal is " + selectedRec[0] + ".";
-    }
-    next();
 
   //This is the next exercise intent
-  } else if(req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/64a22f46-bdee-4a1b-a8df-3956bdf6c158") {
-    var tempCount = 0;
-    tempCount = workoutCount[0];
-    workoutCount[0] = tempCount + 1;
-    //need to add another if statement to check if there is a new exercise or not
-    //this if statement should check if the next workout is real or not and if it is real then it executes
-    if (selectedWorkout[workoutCount[0]] != "" && runningWorkout[0] == 1){
-      //rep vs interval if statement
-      if ( selectedTimer[workoutCount[0]] == "0"){
-        //exercise is rep exercise
-        res.locals.output_string = "Next exercise is " + selectedWorkout[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
-      } else {
-        //exercise is interval exercise
-        res.locals.output_string = "Next exercise is " + selectedWorkout[workoutCount[0]] + " for " + selectedTimer[workoutCount[0]] + ". Your target goal is " + selectedRec[workoutCount[0]] + ".";
-      }
-    } else {
-      //write a function to clear the current running workout like clear selectedWorkout[] + others
-      //Add a statement which checks if the user is running a workout or not/ for example so if they terminate they can go back and say next, it would say no running workout.
-      terminate();
-      if (runningWorkout[0] == 1){
-        res.locals.output_string = "You have completed all the workouts. Nice job!";
-        runningWorkout[0] = 0;
-      } else {
-        res.locals.output_string = "You are not running a workout currently";
-      }
-    }
-    next();
+} else if(req.body.queryResult.intent.displayName == "Next exercise") {
+    console.log("in the next intent");
+    console.dir(sessionVar)
+    doWorkout(sessionVar,req,res,next);
+
 
   //This will be the terminating intent
   } else if (req.body.queryResult.intent.name == "projects/newagent-2d1f9/agent/intents/f36dbef4-b860-40dc-bcd0-2b85d1f54b51") {
