@@ -58,7 +58,6 @@ function count_workouts(session, req, res, next){
   function doWorkout(sessionVar,req,res,next){
     console.log("in start workout")
     console.dir(sessionVar.workout)
-    sessionVar.step++
     let exerciseName = "";
     WorkoutSequence.find({workoutName:sessionVar.workout})
       .exec()
@@ -127,12 +126,14 @@ function process_request(req, res, next){
     console.log("in the start intent")
     sessionVar.step = -1;
     sessionVar.status = 1;
+    sessionVar.step++
     doWorkout(sessionVar,req,res,next);
   //This is the next exercise intent
 } else if(req.body.queryResult.intent.displayName == "Next exercise") {
     console.log("in the next intent");
     console.dir(sessionVar)
     if(sessionVar.status == 1){
+      sessionVar.step++
       doWorkout(sessionVar,req,res,next);
     }else{
       res.locals.output_string = "You are not in any workout right now."
@@ -141,12 +142,29 @@ function process_request(req, res, next){
   } else if(req.body.queryResult.intent.displayName == "Do_Again"){
     sessionVar.status = 1;
     sessionVar.step = -1;
+    sessionVar.step++
     doWorkout(sessionVar,req,res,next);
   }else if(req.body.queryResult.intent.displayName == "Terminate Workout"){
     res.locals.output_string = "Terminating workout."
     sessionVar.status = 0;
     console.log("after terminate");
     next();
+  }else if(req.body.queryResult.intent.displayName == "Pause Workout"){
+    if(sessionVar.status==1){
+      res.locals.output_string = "Pausing workout."
+      console.log("after pause");
+      next();
+    }else{
+      res.locals.output_string = "You are not in any workout right now."
+      next();
+    }
+  }else if(req.body.queryResult.intent.displayName == "Resume Workout"){
+    if(sessionVar.status==1){
+      doWorkout(sessionVar,req,res,next);
+    }else{
+      res.locals.output_string = "You are not in any workout right now."
+      next();
+    }
   }else {
     res.locals.output_string = "oh no!";
     next();
