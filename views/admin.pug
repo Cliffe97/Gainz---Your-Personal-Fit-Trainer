@@ -2,7 +2,9 @@ extends layout
 
 block content
     body
-
+    .bgimg-3.w3-display-container.w3-opacity-min
+      .w3-display-middle
+        span.w3-xxlarge.w3-text-white.w3-wide ADMIN FORM
     form(method="post" action= "/deleteWorkout")
       ol
         each w in workoutSequences

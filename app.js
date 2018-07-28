@@ -122,7 +122,7 @@ app.get('/workoutForm',  workoutController.renderWorkoutForm)
 app.get('/exerciseForm',  exerciseController.renderExerciseForm)
 app.post('/saveWorkout2', workoutController.saveWorkout2)
 app.post('/saveExercise', exerciseController.saveExercise)
-app.get('/workoutSequence',
+app.get('/workoutSequence', 
   exerciseController.attachExercise,
   workoutController.attachWorkout,
   (req, res) => {
@@ -169,7 +169,13 @@ app.use((req,res,next)=>{
 
 
 
-app.use('/', indexRouter);
+//app.use('/', indexRouter);
+app.get('/',
+  exerciseController.attachExercise,
+  workoutController.attachWorkout,
+  (req, res) => {
+  res.render('index')
+} );
 app.use('/users', usersRouter);
 //app.get('/createIntervalWorkout',
           //  createIntervalWorkoutController.renderMain)

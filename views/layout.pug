@@ -17,39 +17,27 @@ html
       a.w3-bar-item.w3-button(href='/')
         i.fa.fa-home
         |  HOME
-      a.w3-bar-item.w3-button(href='/workoutForm')
-        i.fa.fa-home
-        |  Workout Form
-      a.w3-bar-item.w3-button(href='/exerciseForm')
-        i.fa.fa-home
-        |  Exercise Form
-      a.w3-bar-item.w3-button(href='/workoutSequence')
-        i.fa.fa-home
-        |  Workout Sequence
-      a.w3-bar-item.w3-button.w3-hide-small(href='/exerciseInfo')
-        i.fa.fa-info-circle
-        |  EXERCISE INFO
-      a.w3-bar-item.w3-button.w3-hide-small(href='/preMade')
-        i.fa.fa-th
-        |   PRE-MADE ALL
       if loggedIn
-        a.w3-bar-item.w3-button.w3-hide-small(href='/createIntervalWorkout')
-          i.fa.fa-th
-          |  CREATE CUSTOM
-      //a.w3-bar-item.w3-button.w3-hide-small(href='/contact')
-        //i.fa.fa-envelope
-        //|  CONTACT
+        a.w3-bar-item.w3-button(href='/workoutForm')
+          i.fa.fa-home
+          |  WORKOUT FORM
+        a.w3-bar-item.w3-button(href='/exerciseForm')
+          i.fa.fa-home
+          |  EXERCISE FORM
+        a.w3-bar-item.w3-button(href='/workoutSequence')
+          i.fa.fa-home
+          |  WORKOUT SEQUENCE
       a.w3-bar-item.w3-button.w3-hide-small(href='/about')
         i.fa.fa-universal-access
         |  ABOUT
       if loggedIn
-        a.w3-bar-item.w3-button.w3-hide-small.w3-right.w3-hover-red(href='/logout')
-          span.fa.fa-logout
-          | Logout
         if status=='owner'
           a.w3-bar-item.w3-button.w3-hide-small(href='/admin')
             i.fa.fa-user
             |  ADMIN
+        a.w3-bar-item.w3-button.w3-hide-small.w3-right.w3-hover-red(href='/logout')
+          span.fa.fa-logout
+          | LOGOUT
       else
         a.w3-bar-item.w3-button.w3-hide-small.w3-right.w3-hover-red(href='/auth/google')
           span.fa.fa-google-plus
