@@ -108,7 +108,7 @@ console.log('API server listening...')
 })
 
 let sessionVars=[];
-function process_request(req, res){
+function process_request(req, res, next){
   res.locals.output_string = "there was an error";
   var temp = "";
   console.log("in the processing")
