@@ -115,7 +115,7 @@ function process_request(req, res, next){
   sessionVars[req.body.sessions]= sessionVars[req.body.sessions] || {};
   let sessionVar = sessionVars[req.body.sessions];
   if (req.body.request){
-    if(req.body.request.intent == "how_many"){
+    if(req.body.request.intent.name == "how_many"){
       console.log("how many triggered");
       var category = req.body.request.slots.bodyfocusslot.value;
       sessionVar.category = category;
@@ -174,29 +174,37 @@ function process_request(req, res, next){
   }
 
 
-function replyToDiaf(req, res, next){
-  console.dir(req.body)
-  return res.json({
-    "version": "beta",
+  function replyToDiaf(req, res, next){
+    console.log("in replyToDiaf")
+    console.dir(req.body)
+    return res.json({
+        "fulfillmentMessages": [],
+        "fulfillmentText": res.locals.output_string,
+        "payload":{"slack":{"text":res.locals.output_string}},
+        "outputContexts": [],
+        "source": "Text Source",
+        "followupEventInput":{},
+        "version": "beta",
 
-    "sessionAttributes": {
-      "key": "value"
-    },
-    "response": {
-      "outputSpeech": {
-        "type": "PlainText",
-        "text": res.locals.output_string
-      },
-      "reprompt": {
-        "outputSpeech": {
-          "type": "PlainText",
-          "text": "Plain text string to speak reprompt"
-        }
-      },
-      "shouldEndSession": true
-    }
-  });
-}
+  			"sessionAttributes": {
+   				"key": "value"
+  			},
+  			"response": {
+    			"outputSpeech": {
+    				"type": "PlainText",
+      			"text": res.locals.output_string
+    		},
+    			"reprompt": {
+     				"outputSpeech": {
+     					"type": "PlainText",
+        				"text": "Plain text string to speak reprompt"
+        		}
+    		},
+    		"shouldEndSession": true
+  			}
+      });
+  }
+
 
 
 
