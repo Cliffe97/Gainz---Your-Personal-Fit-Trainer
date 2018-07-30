@@ -14,6 +14,9 @@ const createRepWorkoutController = require('./controllers/createRepWorkoutContro
 const repWorkoutController = require('./controllers/repWorkoutController')
 const intervalWorkoutController = require('./controllers/intervalWorkoutController')
 const customChoosingController = require('./controllers/customChoosingController')
+const workoutSequenceController = require('./controllers/workoutSequenceController')
+const workoutController = require('./controllers/workoutController')
+const exerciseController = require('./controllers/exerciseController')
 
 const menuController = require('./controllers/menuController');
 const filterController = require('./controllers/filterController');
@@ -23,6 +26,7 @@ const preMadeController = require('./controllers/preMadeController')
 const Workout = require( './models/Workout' );
 const Exercise = require( './models/Exercise' );
 const WorkoutSequence = require( './models/WorkoutSequence' );
+
 
 //authentication with passport
 const session = require("express-session")
@@ -110,12 +114,22 @@ app.get('/login/authorized',
     failureRedirect:'/loginerror'
   }))
 
-app.get('/createIntervalWorkout',  filterController.getAllWorkouts)
-//app.post('/saveWorkout', filterController.saveWorkout)
-//app.get('/preMade', setController.getAllPlans)
-//app.get('/c'ategory', filterController.getAllWorkouts)
-app.post('/deleteWorkout', filterController.deleteWorkout)
-//app.post('/selectWorkout', filterController.selectWorkout)
+  app.get('/workoutForm',  workoutController.renderWorkoutForm)
+  app.get('/exerciseForm',  exerciseController.renderExerciseForm)
+  app.post('/saveWorkout2', workoutController.saveWorkout2)
+  app.post('/saveExercise', exerciseController.saveExercise)
+  app.get('/workoutSequence',
+    exerciseController.attachExercise,
+    workoutController.attachWorkout,
+    (req, res) => {
+    //res.locals.workouts = [{name:"fb"},{name:"yoga"}]
+    //res.locals.exercises = [{name:"pushups"},{name:"down dog"}]
+    res.render('workoutSequence')
+  } );
+  app.post('/saveWorkoutSequence', workoutSequenceController.saveWorkoutSequence)
+  //app.get('/admin', filterController.renderAdmin);
+  app.get('/admin', filterController.getAllWorkouts);
+  app.post('/deleteWorkout', filterController.deleteWorkout);
 
 
 //route middleware to make sure a user is logged inspect
@@ -151,7 +165,12 @@ app.use((req,res,next)=>{
 
 
 
-app.use('/', indexRouter);
+app.get('/',
+  exerciseController.attachExercise,
+  workoutController.attachWorkout,
+  (req, res) => {
+  res.render('index')
+} );
 app.use('/users', usersRouter);
 //app.get('/createIntervalWorkout',
           //  createIntervalWorkoutController.renderMain)
