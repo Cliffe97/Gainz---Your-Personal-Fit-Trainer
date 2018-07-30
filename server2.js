@@ -201,4 +201,18 @@ function replyToDiaf(req, res, next){
 
 
 
-app.post('/hook', process_request, replyToDiaf);
+app.post('/hook', function (req, res) {
+	console.log(JSON.stringify(req.body, null, 2)); //display the body of the response with objects expanded to json strings
+	process_request(req, res),
+  replyToDiaf(req, res, next)
+	// var my_string = "string example";
+	// return res.json({
+ //                "fulfillmentMessages": [],
+ //                "fulfillmentText": my_string,
+ //                "payload": {},
+ //                "outputContexts": [],
+ //                "source": "Test Source",
+ //                "followupEventInput": {}
+ //            });
+
+});
