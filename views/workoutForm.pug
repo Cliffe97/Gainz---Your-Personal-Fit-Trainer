@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  body.greyBC
+  .container.containerBorder
+    br
+    // Third Parallax Image with Portfolio Text
+    .bgimg-3.w3-display-container.w3-opacity-min
+      .w3-display-middle
+        span.w3-xxlarge.w3-text-white.w3-wide WORKOUT FORM
+    p Testing Workout Form
+    form(method="post" action="saveWorkout2")
+      ol
+        td
+          input(type='text', name='name',placeholder='Workout Name')
+          input(type='text', name='email', readonly="true," value=user.googleemail)
+          select(type='text', name='category')
+            option(value='Total') Total Body
+            option(value='Upper') Upper
+            option(value='Lower') Lower
+            option(value='Core') Core
+      button(type='submit') Submit
+      br

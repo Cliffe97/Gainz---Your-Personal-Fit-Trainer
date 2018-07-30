@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  body.greyBC
+  .container.containerBorder
+    br
+    // Third Parallax Image with Portfolio Text
+    .bgimg-3.w3-display-container.w3-opacity-min
+      .w3-display-middle
+        span.w3-xxlarge.w3-text-white.w3-wide EXERCISE FORM
+    p Testing Exercising Form
+    form(method="post" action="saveExercise")
+      ol
+        td
+          input(type='text', name='exerciseName',placeholder='Exercise Name')
+          input(type='text', name='timer',placeholder='Exercise Timer')
+          input(type='text', name='rec',placeholder='Recommendation')
+          input(type='text', name='description',placeholder='Description')
+      button(type='submit') Submit
+      br

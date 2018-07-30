@@ -8,156 +8,72 @@ block content
         span.w3-hide-small GainZ
       .w3-center
           br
-          em A better you
+          em A BETTER YOU
 
   #portfolio.w3-content.w3-container.w3-padding-64
     if loggedIn
       h1.w3-center Hello #{user.googlename}
     h3.w3-center "Work in Silence, let your success be your noise"
-  // First Parallax Image with Portfolio Text
-  .bgimg-2.w3-display-container.w3-opacity-min
-    .w3-display-middle
-      span.w3-xxlarge.w3-text-white.w3-wide PRE-MADE WORKOUTS
-  // Container (Portfolio Section)
-  #portfolio.w3-content.w3-container.w3-padding-64
-    h3.w3-center FEATURED PRE-MADE WORKOUTS
-    p.w3-center
-      em
-        | Here are some of the latest workouts.
-    br
-    // Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width)
-    .w3-row-padding.w3-center
-      .w3-col.m3
-        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='The mist over the mountains')
-      .w3-col.m3
-        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='Coffee beans')
-      .w3-col.m3
-        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='Bear closeup')
-      .w3-col.m3
-        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='Quiet ocean')
-    .w3-row-padding.w3-center.w3-section
-      .w3-col.m3
-        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='The mist')
-      .w3-col.m3
-        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='My beloved typewriter')
-      .w3-col.m3
-        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='Empty ghost train')
-      .w3-col.m3
-        img.w3-hover-opacity(src='/images/Build-Lean-Muscle-1.png', style='width:100%', onclick='onClick(this)', alt='Sailing')
-      a.button.w3-button.w3-padding-large.w3-light-grey(style='margin-top:64px' href="/preMade") MORE PRE-MADE WORKOUTS
-  // Modal for full size images on click
-  #modal01.w3-modal.w3-black(onclick="this.style.display='none'")
-    span.w3-button.w3-large.w3-black.w3-display-topright(title='Close Modal Image')
-      i.fa.fa-remove
-    .w3-modal-content.w3-animate-zoom.w3-center.w3-transparent.w3-padding-64
-      img#img01.w3-image
-      p#caption.w3-opacity.w3-large
   if loggedIn
     // First Parallax Image with Portfolio Text
     .bgimg-2.w3-display-container.w3-opacity-min
       .w3-display-middle
-        span.w3-xxlarge.w3-text-white.w3-wide CUSTOM WORKOUTS
+        span.w3-xxlarge.w3-text-white.w3-wide WORKOUT FORM
     // Container (Portfolio Section)
     #portfolio.w3-content.w3-container.w3-padding-64
-      p Create a custom workout
-      form(method="post" action="saveWorkout")
+      p Workout Form
+      form(method="post" action="saveWorkout2")
         ol
           td
-            input(type='text', name='Name',placeholder='Workout Name')
-            input(type='text', name='Email',value=user.googleemail)
-          li
-              td
-                input(type='text', name='Exercise1',placeholder='Exercise Name')
-              td
-                input(type='text', name='Timer1', placeholder='Timer')
-              td
-                input(type='text', name='Rec1', placeholder='Recommended Goal')
-              td
-                select(type='text', name='Category1')
-                  option(value='Total') Total Body
-                  option(value='Upper') Upper
-                  option(value='Lower') Lower
-                  option(value='Core') Core
-          li
-              td
-                input(type='text', name='Exercise2',placeholder='Exercise Name')
-              td
-                input(type='text', name='Timer2', placeholder='Timer')
-              td
-                input(type='text', name='Rec2',placeholder='Recommended Goal')
-              td
-                select(type='text', name='Category2')
-                  option(value='Total') Total Body
-                  option(value='Upper') Upper
-                  option(value='Lower') Lower
-                  option(value='Core') Core
-          li
-              td
-                input(type='text', name='Exercise3',placeholder='Exercise Name')
-              td
-                input(type='text', name='Timer3',placeholder='Timer')
-              td
-                input(type='text', name='Rec3',placeholder='Recommended Goal')
-              td
-                select(type='text', name='Category3')
-                  option(value='Total') Total Body
-                  option(value='Upper') Upper
-                  option(value='Lower') Lower
-                  option(value='Core') Core
-          li
-              td
-                input(type='text', name='Exercise4',placeholder='Exercise Name')
-              td
-                input(type='text', name='Timer4',placeholder='Timer')
-              td
-                input(type='text', name='Rec4',placeholder='Recommended Goal')
-              td
-                select(type='text', name='Category4')
-                  option(value='Total') Total Body
-                  option(value='Upper') Upper
-                  option(value='Lower') Lower
-                  option(value='Core') Core
-          li
-              td
-                input(type='text', name='Exercise5',placeholder='Exercise Name')
-              td
-                input(type='text', name='Timer5',placeholder='Timer')
-              td
-                input(type='text', name='Rec5',placeholder='Recommended Goal')
-              td
-                select(type='text', name='Category5')
-                  option(value='Total') Total Body
-                  option(value='Upper') Upper
-                  option(value='Lower') Lower
-                  option(value='Core') Core
-          li
-              td
-                input(type='text', name='Exercise6',placeholder='Exercise Name')
-              td
-                input(type='text', name='Timer6',placeholder='Timer')
-              td
-                input(type='text', name='Rec6',placeholder='Recommended Goal')
-              td
-                select(type='text', name='Category6')
-                  option(value='Total') Total Body
-                  option(value='Upper') Upper
-                  option(value='Lower') Lower
-                  option(value='Core') Core
-          li
-              td
-                input(type='text', name='Exercise7',placeholder='Exercise Name')
-              td
-                input(type='text', name='Timer7',placeholder='Timer')
-              td
-                input(type='text', name='Rec7',placeholder='Recommended Goal')
-              td
-                select(type='text', name='Category7')
-                  option(value='Total') Total Body
-                  option(value='Upper') Upper
-                  option(value='Lower') Lower
-                  option(value='Core') Core
+            input(type='text', name='name',placeholder='Workout Name')
+            input(type='text', name='email', readonly="true," value=user.googleemail)
+            select(type='text', name='category')
+              option(value='Total') Total Body
+              option(value='Upper') Upper
+              option(value='Lower') Lower
+              option(value='Core') Core
         button(type='submit') Submit
         br
+    .bgimg-2.w3-display-container.w3-opacity-min
+      .w3-display-middle
+        span.w3-xxlarge.w3-text-white.w3-wide EXERCISE FORM
+    // Container (Portfolio Section)
+    #portfolio.w3-content.w3-container.w3-padding-64
+      p Exercise Form
+      form(method="post" action="saveExercise")
+        ol
+          td
+            input(type='text', name='exerciseName',placeholder='Exercise Name')
+            input(type='text', name='timer',placeholder='Exercise Timer')
+            input(type='text', name='rec',placeholder='Recommendation')
+            input(type='text', name='description',placeholder='Description')
+        button(type='submit') Submit
+        br
+    .bgimg-2.w3-display-container.w3-opacity-min
+      .w3-display-middle
+        span.w3-xxlarge.w3-text-white.w3-wide WORKOUT SEQUENCE FORM
+    // Container (Portfolio Section)
+    #portfolio.w3-content.w3-container.w3-padding-64
+      p Workout Sequence Form
+      form(method="post" action="saveWorkoutSequence")
+        select(name="workoutName")
+          each w in workouts
+            option #{w.name}
+        select(name="exerciseName")
+          each e in exercises
+            option #{e.exerciseName}
+        select(name = "order")
+          option 1
+          option 2
+          option 3
+          option 4
+          option 5
+          option 6
+          option 7
+          option 8
+        button(type='submit') Submit
+        br
+
   // Third Parallax Image with Portfolio Text
   .bgimg-3.w3-display-container.w3-opacity-min
     .w3-display-middle
@@ -175,27 +91,17 @@ block content
       img.w3-round.w3-image(src ='/images/brandeisMap.jpg', alt='Photo of Me', width='300', height='300')
     .w3-col.m8.w3-panel
       .w3-large.w3-margin-bottom
+        br
+        br
+        br
         i.fa.fa-map-marker.fa-fw.w3-hover-text-black.w3-xlarge.w3-margin-right
         |  Waltham, Massachusetts US
-        br
-        i.fa.fa-phone.fa-fw.w3-hover-text-black.w3-xlarge.w3-margin-right
-        |  Phone: +00 151515
         br
         i.fa.fa-envelope.fa-fw.w3-hover-text-black.w3-xlarge.w3-margin-right
         |  Email: humangainz@mail.com
         br
-      p
-        | We answer relatively quick!
-      form(action='/action_page.php', target='_blank')
-        .w3-row-padding(style='margin:0 -16px 8px -16px')
-          .w3-half
-            input.w3-input.w3-border(type='text', placeholder='Name', required='', name='Name')
-          .w3-half
-            input.w3-input.w3-border(type='text', placeholder='Email', required='', name='Email')
-        input.w3-input.w3-border(type='text', placeholder='Message', required='', name='Message')
-        button.w3-button.w3-black.w3-right.w3-section(type='submit')
-          i.fa.fa-paper-plane
-          |  SEND MESSAGE
+        i.fa.fa-user.fa-fw.w3-hover-text-black.w3-xlarge.w3-margin-right
+        |  We answer relatively quick!
 
   footer.w3-center.w3-black.w3-padding-64.w3-opacity.w3-hover-opacity-off
     a.w3-button.w3-light-grey(href='/')

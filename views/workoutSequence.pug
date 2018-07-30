@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  body.greyBC
+  .container.containerBorder
+    br
+    // Third Parallax Image with Portfolio Text
+    .bgimg-3.w3-display-container.w3-opacity-min
+      .w3-display-middle
+        span.w3-xxlarge.w3-text-white.w3-wide WORKOUT SEQUENCE
+    p Testing Exercising Form
+    form(method="post" action="saveWorkoutSequence")
+      select(name="workoutName")
+        each w in workouts
+          option #{w.name}
+      select(name="exerciseName")
+        each e in exercises
+          option #{e.exerciseName}
+      select(name = "order")
+        option 1
+        option 2
+        option 3
+        option 4
+        option 5
+        option 6
+        option 7
+        option 8
+      button(type='submit') Submit
+      br

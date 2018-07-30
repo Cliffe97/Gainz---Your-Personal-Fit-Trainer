@@ -108,82 +108,94 @@ console.log('API server listening...')
 })
 
 let sessionVars=[];
-function process_request(req, res, next){
+function process_request(req, res){
   res.locals.output_string = "there was an error";
   var temp = "";
   console.log("in the processing")
   sessionVars[req.body.sessions]= sessionVars[req.body.sessions] || {};
   let sessionVar = sessionVars[req.body.sessions];
-  if(req.body.queryResult.intent.displayName == "how_many"){
-    console.log("how many triggered");
-    var category = req.body.queryResult.parameters["BodyFocus"];
-    sessionVar.category = category;
-    count_workouts(sessionVar,req,res, next);
-  }else if(req.body.queryResult.intent.displayName == "show_one"){
-    var arrayIndex = req.body.queryResult.parameters["number-integer"];
-
-    get_one(sessionVar, arrayIndex, req, res, next);
-  }else if (req.body.queryResult.intent.displayName == "Workout - Start command"){
-    console.log("in the start intent")
-    sessionVar.step = -1;
-    sessionVar.status = 1;
-    sessionVar.step++
-    doWorkout(sessionVar,req,res,next);
-  //This is the next exercise intent
-} else if(req.body.queryResult.intent.displayName == "Next exercise") {
-    console.log("in the next intent");
-    console.dir(sessionVar)
-    if(sessionVar.status == 1){
+  if (req.body.request){
+    if(req.body.request.intent == "how_many"){
+      console.log("how many triggered");
+      var category = req.body.request.slots.bodyfocusslot.value;
+      sessionVar.category = category;
+      count_workouts(sessionVar,req,res, next);
+    }else if(req.body.request.intent == "show_one"){
+      var arrayIndex = req.body.request.numberslot.value;
+      get_one(sessionVar, arrayIndex, req, res, next);
+    }else if (req.body.request.intent == "Workout - Start command"){
+      console.log("in the start intent")
+      sessionVar.step = -1;
+      sessionVar.status = 1;
       sessionVar.step++
       doWorkout(sessionVar,req,res,next);
-    }else{
-      res.locals.output_string = "You are not in any workout right now."
-      next();
-    }
-  } else if(req.body.queryResult.intent.displayName == "Do_Again"){
-    sessionVar.status = 1;
-    sessionVar.step = -1;
-    sessionVar.step++
-    doWorkout(sessionVar,req,res,next);
-  }else if(req.body.queryResult.intent.displayName == "Terminate Workout"){
-    res.locals.output_string = "Terminating workout."
-    sessionVar.status = 0;
-    console.log("after terminate");
-    next();
-  }else if(req.body.queryResult.intent.displayName == "Pause Workout"){
-    if(sessionVar.status==1){
-      res.locals.output_string = "Pausing workout."
-      console.log("after pause");
-      next();
-    }else{
-      res.locals.output_string = "You are not in any workout right now."
-      next();
-    }
-  }else if(req.body.queryResult.intent.displayName == "Resume Workout"){
-    if(sessionVar.status==1){
-      doWorkout(sessionVar,req,res,next);
-    }else{
-      res.locals.output_string = "You are not in any workout right now."
-      next();
-    }
-  }else {
-    res.locals.output_string = "oh no!";
-    next();
+    //This is the next exercise intent
+    } else if(req.body.request.intent == "Next exercise") {
+        console.log("in the next intent");
+        console.dir(sessionVar)
+        if(sessionVar.status == 1){
+          sessionVar.step++
+          doWorkout(sessionVar,req,res,next);
+        }else{
+          res.locals.output_string = "You are not in any workout right now."
+          next();
+        }
+      } else if(req.body.request.intent == "Do_Again"){
+        sessionVar.status = 1;
+        sessionVar.step = -1;
+        sessionVar.step++
+        doWorkout(sessionVar,req,res,next);
+      }else if(req.body.request.intent == "Terminate Workout"){
+        res.locals.output_string = "Terminating workout."
+        sessionVar.status = 0;
+        console.log("after terminate");
+        next();
+      }else if(req.body.request.intent == "Pause Workout"){
+        if(sessionVar.status==1){
+          res.locals.output_string = "Pausing workout."
+          console.log("after pause");
+          next();
+        }else{
+          res.locals.output_string = "You are not in any workout right now."
+          next();
+        }
+      }else if(req.body.request.intent == "Resume Workout"){
+        if(sessionVar.status==1){
+          doWorkout(sessionVar,req,res,next);
+        }else{
+          res.locals.output_string = "You are not in any workout right now."
+          next();
+        }
+      }else {
+        res.locals.output_string = "oh no!";
+        next();
+      }
+    };
   }
-};
 
 
 function replyToDiaf(req, res, next){
   console.dir(req.body)
   return res.json({
-      "fulfillmentMessages": [],
-      "fulfillmentText": res.locals.output_string,
-      "payload":{"slack":{"text":res.locals.output_string}},
-      "outputContexts": [],
-      "source": "Text Source",
-      "followupEventInput":{}
-    });
+    "version": "beta",
 
+    "sessionAttributes": {
+      "key": "value"
+    },
+    "response": {
+      "outputSpeech": {
+        "type": "PlainText",
+        "text": res.locals.output_string
+      },
+      "reprompt": {
+        "outputSpeech": {
+          "type": "PlainText",
+          "text": "Plain text string to speak reprompt"
+        }
+      },
+      "shouldEndSession": true
+    }
+  });
 }
 
 

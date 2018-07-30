@@ -20,6 +20,10 @@ const setController = require('./controllers/setController');
 const aboutController = require('./controllers/aboutController')
 const preMadeController = require('./controllers/preMadeController')
 
+const workoutController = require('./controllers/workoutController');
+const exerciseController = require('./controllers/exerciseController');
+const workoutSequenceController = require('./controllers/workoutSequenceController');
+
 
 //authentication with passport
 const session = require("express-session")
@@ -28,7 +32,8 @@ const configPassport = require('./config/passport')
 configPassport(passport)
 
 const mongoose = require( 'mongoose' );
-mongoose.connect( 'mongodb://localhost/gainz' );
+//mongoose.connect( 'mongodb://localhost/gainz' );
+mongoose.connect( 'mongodb://gainz:Brandeis18@ds145121.mlab.com:45121/gainz-google' );
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -106,11 +111,29 @@ app.get('/login/authorized',
   }))
 
 app.get('/createIntervalWorkout',  filterController.getAllWorkouts)
-app.post('/saveWorkout', filterController.saveWorkout)
+//app.post('/saveWorkout', filterController.saveWorkout)
 //app.get('/preMade', setController.getAllPlans)
 //app.get('/c'ategory', filterController.getAllWorkouts)
-app.post('/deleteWorkout', filterController.deleteWorkout)
-app.post('/selectWorkout', filterController.selectWorkout)
+//app.post('/deleteWorkout', filterController.deleteWorkout)
+//app.post('/selectWorkout', filterController.selectWorkout)
+
+
+app.get('/workoutForm',  workoutController.renderWorkoutForm)
+app.get('/exerciseForm',  exerciseController.renderExerciseForm)
+app.post('/saveWorkout2', workoutController.saveWorkout2)
+app.post('/saveExercise', exerciseController.saveExercise)
+app.get('/workoutSequence', 
+  exerciseController.attachExercise,
+  workoutController.attachWorkout,
+  (req, res) => {
+  //res.locals.workouts = [{name:"fb"},{name:"yoga"}]
+  //res.locals.exercises = [{name:"pushups"},{name:"down dog"}]
+  res.render('workoutSequence')
+} );
+app.post('/saveWorkoutSequence', workoutSequenceController.saveWorkoutSequence)
+//app.get('/admin', filterController.renderAdmin);
+app.get('/admin', filterController.getAllWorkouts);
+app.post('/deleteWorkout', filterController.deleteWorkout);
 
 
 //route middleware to make sure a user is logged inspect
@@ -146,7 +169,13 @@ app.use((req,res,next)=>{
 
 
 
-app.use('/', indexRouter);
+//app.use('/', indexRouter);
+app.get('/',
+  exerciseController.attachExercise,
+  workoutController.attachWorkout,
+  (req, res) => {
+  res.render('index')
+} );
 app.use('/users', usersRouter);
 //app.get('/createIntervalWorkout',
           //  createIntervalWorkoutController.renderMain)
