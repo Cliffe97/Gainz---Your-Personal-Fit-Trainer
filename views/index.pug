@@ -14,6 +14,14 @@ block content
     if loggedIn
       h1.w3-center Hello #{user.googlename}
     h3.w3-center "Work in Silence, let your success be your noise"
+  .bgimg-2.w3-display-container.w3-opacity-min
+    .w3-display-middle
+      span.w3-xxlarge.w3-text-white.w3-wide WORKOUT FORM
+  // Container (Portfolio Section)
+  #portfolio.w3-content.w3-container.w3-padding-64
+    p Workout Form
+    iframe(allow='microphone;', width='350', height='430', src='https://console.dialogflow.com/api-client/demo/embedded/01c4c9d3-fe94-4130-be58-064258baf0ea')
+
   if loggedIn
     // First Parallax Image with Portfolio Text
     .bgimg-2.w3-display-container.w3-opacity-min
