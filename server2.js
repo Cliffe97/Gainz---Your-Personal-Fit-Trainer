@@ -26,6 +26,8 @@ function count_workouts(session, req, res, next){
       // arrayWorkout.push(workouts);
       // console.log(arrayWorkout[0][0]);
       res.locals.output_string="There are "+ workouts.length;
+      console.log("after output_string");
+      console.log(res.locals.output_string);
       next();
     } )
     .catch( ( error ) => {
@@ -115,61 +117,68 @@ function process_request(req, res, next){
   sessionVars[req.body.sessions]= sessionVars[req.body.sessions] || {};
   let sessionVar = sessionVars[req.body.sessions];
   if (req.body.request){
-    if(req.body.request.intent.name == "how_many"){
-      console.log("how many triggered");
-      var category = req.body.request.slots.bodyfocusslot.value;
-      sessionVar.category = category;
-      count_workouts(sessionVar,req,res, next);
-    }else if(req.body.request.intent == "show_one"){
-      var arrayIndex = req.body.request.numberslot.value;
-      get_one(sessionVar, arrayIndex, req, res, next);
-    }else if (req.body.request.intent == "Workout - Start command"){
-      console.log("in the start intent")
-      sessionVar.step = -1;
-      sessionVar.status = 1;
-      sessionVar.step++
-      doWorkout(sessionVar,req,res,next);
-    //This is the next exercise intent
-    } else if(req.body.request.intent == "Next exercise") {
-        console.log("in the next intent");
-        console.dir(sessionVar)
-        if(sessionVar.status == 1){
-          sessionVar.step++
-          doWorkout(sessionVar,req,res,next);
-        }else{
-          res.locals.output_string = "You are not in any workout right now."
-          next();
-        }
-      } else if(req.body.request.intent == "Do_Again"){
-        sessionVar.status = 1;
+    if(req.body.request.intent){
+      if(req.body.request.type == "LaunchRequest"){
+        res.locals.output_string = "Launching GainZ."
+        next();
+      }else if (req.body.request.intent.name == "How_many"){
+        console.log("how many triggered");
+        var category = req.body.request.intent.slots.Category.value;
+        console.log("Category is: " + category);
+        sessionVar.category = category;
+        count_workouts(sessionVar,req,res, next);
+        console.log("New output =" + res.locals.output_string);
+      }else if(req.body.request.intent.name == "show_one"){
+        var arrayIndex = req.body.request.intent.numberslot.value;
+        get_one(sessionVar, arrayIndex, req, res, next);
+      }else if (req.body.request.intent.name == "Workout - Start command"){
+        console.log("in the start intent")
         sessionVar.step = -1;
+        sessionVar.status = 1;
         sessionVar.step++
         doWorkout(sessionVar,req,res,next);
-      }else if(req.body.request.intent == "Terminate Workout"){
-        res.locals.output_string = "Terminating workout."
-        sessionVar.status = 0;
-        console.log("after terminate");
-        next();
-      }else if(req.body.request.intent == "Pause Workout"){
-        if(sessionVar.status==1){
-          res.locals.output_string = "Pausing workout."
-          console.log("after pause");
-          next();
-        }else{
-          res.locals.output_string = "You are not in any workout right now."
-          next();
-        }
-      }else if(req.body.request.intent == "Resume Workout"){
-        if(sessionVar.status==1){
+      //This is the next exercise intent
+      } else if(req.body.request.intent.name == "Next exercise") {
+          console.log("in the next intent");
+          console.dir(sessionVar)
+          if(sessionVar.status == 1){
+            sessionVar.step++
+            doWorkout(sessionVar,req,res,next);
+          }else{
+            res.locals.output_string = "You are not in any workout right now."
+            next();
+          }
+        } else if(req.body.request.intent.name == "Do_Again"){
+          sessionVar.status = 1;
+          sessionVar.step = -1;
+          sessionVar.step++
           doWorkout(sessionVar,req,res,next);
-        }else{
-          res.locals.output_string = "You are not in any workout right now."
+        }else if(req.body.request.intent.name == "Terminate Workout"){
+          res.locals.output_string = "Terminating workout."
+          sessionVar.status = 0;
+          console.log("after terminate");
+          next();
+        }else if(req.body.request.intent.name == "Pause Workout"){
+          if(sessionVar.status==1){
+            res.locals.output_string = "Pausing workout."
+            console.log("after pause");
+            next();
+          }else{
+            res.locals.output_string = "You are not in any workout right now."
+            next();
+          }
+        }else if(req.body.request.intent.name == "Resume Workout"){
+          if(sessionVar.status==1){
+            doWorkout(sessionVar,req,res,next);
+          }else{
+            res.locals.output_string = "You are not in any workout right now."
+            next();
+          }
+        } else {
+          res.locals.output_string = "oh no!";
           next();
         }
-      }else {
-        res.locals.output_string = "oh no!";
-        next();
-      }
+    }
     };
   }
 
@@ -209,9 +218,9 @@ function process_request(req, res, next){
 
 
 
-app.post('/hook', function (req, res) {
-	console.log(JSON.stringify(req.body, null, 2)); //display the body of the response with objects expanded to json strings
-	process_request(req, res),
+app.post('/hook', function (req, res, next) {
+	//console.log(JSON.stringify(req.body, null, 2)); //display the body of the response with objects expanded to json strings
+	process_request(req, res, next),
   replyToDiaf(req, res, next)
 	// var my_string = "string example";
 	// return res.json({

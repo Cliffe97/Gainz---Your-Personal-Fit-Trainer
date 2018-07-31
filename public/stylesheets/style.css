@@ -178,3 +178,26 @@ td, th {
 .bold{
   font-weight: bold;
 }
+
+.section {
+  width: 110%;
+  height: 225px;
+  margin: 10px auto;
+  background: transparent;
+  display: flex;
+  //resize: both;
+  //overflow: auto;
+}
+.box {
+  //color: white;
+  background: transparent;
+  flex: 1;
+  //margin-right: 5px;
+  text-shadow: 1px 1px 1px black;
+  //resize: both;
+  //overflow: auto;
+}
+.section, .box {
+  border: 0px solid rgba(0,0,0,0.85);
+  padding: 2px;
+}

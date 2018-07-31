@@ -19,9 +19,39 @@ block content
       span.w3-xxlarge.w3-text-white.w3-wide Dialog Flow Bot
   // Container (Portfolio Section)
   #portfolio.w3-content.w3-container.w3-padding-64
-    p Dialog Flow Bot
-    iframe(allow='microphone;', width='350', height='430', src='https://console.dialogflow.com/api-client/demo/embedded/01c4c9d3-fe94-4130-be58-064258baf0ea')
-
+    .container
+      .section
+        .box
+          h1 Dialog Flow Bot
+          iframe(allow='microphone;', width='350', height='430', src='https://console.dialogflow.com/api-client/demo/embedded/01c4c9d3-fe94-4130-be58-064258baf0ea')
+        .box
+          h1 Commands
+          ol
+            li How many [Total Body, Upper Body, Lower Body, Core] workouts
+            br
+            li Show me the [First, Second, Third...] one
+            br
+            li Start workout
+            br
+            li Next exercise
+            br
+            li Pause
+            br
+            li Resume
+            br
+            li Terminate
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
   if loggedIn
     // First Parallax Image with Portfolio Text
     .bgimg-2.w3-display-container.w3-opacity-min
