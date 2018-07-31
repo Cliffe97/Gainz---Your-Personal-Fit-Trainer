@@ -127,7 +127,7 @@ function process_request(req, res, next){
         console.log("Category is: " + category);
         sessionVar.category = category;
         count_workouts(sessionVar,req,res, next);
-        console.log("New output =" + res.locals.output_string);
+        console.log("New output after count_workouts =" + res.locals.output_string);
       }else if(req.body.request.intent.name == "show_one"){
         var arrayIndex = req.body.request.intent.numberslot.value;
         get_one(sessionVar, arrayIndex, req, res, next);
